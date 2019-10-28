@@ -1,0 +1,2 @@
+# Checkers game engine
+imparaai-checkers
