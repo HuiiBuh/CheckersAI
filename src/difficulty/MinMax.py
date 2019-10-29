@@ -7,6 +7,13 @@ from checkers.game import Game
 from difficulty.Opponent import Opponent
 
 
+class MinMaxWeight:
+    WIN = maxsize
+    LOSE = -maxsize
+    PICE = 1
+    KING = 1.5
+
+
 class MinMax(Opponent):
     def __init__(self, player: int, branch_depth: int):
         """
@@ -37,7 +44,8 @@ class MinMax(Opponent):
         print(f"{self._position_to_coordinates(move[0])}/{self._position_to_coordinates(move[1])}")
         self.game.move(move)
 
-    def _min_max(self, game: Game, maximize_score: bool, depth=0):
+    def _min_max(self, game: Game, maximize_score: bool, alpha=MinMaxWeight.LOSE, beta=MinMaxWeight.WIN,
+                 depth=0):
         """
         Calculate the min max
         :param depth: The current depth of the branch
@@ -48,7 +56,7 @@ class MinMax(Opponent):
         if game.is_over():
             winner = game.get_winner()
             if winner == self.player:
-                return MinMaxWeight.WINN, None
+                return MinMaxWeight.WIN, None
             return MinMaxWeight.LOSE, None
 
         # Check if the max depth is reached
@@ -56,7 +64,7 @@ class MinMax(Opponent):
             return self.evaluate_path(game), None
 
         # Get the smallest/largest number to initialize the var
-        best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WINN
+        best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WIN
 
         move = None
         # Iterate through the moves and recursively find the best
@@ -65,11 +73,16 @@ class MinMax(Opponent):
         for move in moves:
             updated_game = copy.deepcopy(game)
             updated_game.move(move)
-            score, _ = self._min_max(updated_game, not maximize_score, depth + 1)
+            score, _ = self._min_max(updated_game, not maximize_score, alpha=alpha, beta=beta, depth=depth + 1)
             if maximize_score:
                 best_score = max(score, best_score)
+                alpha = max(alpha, best_score)
             else:
                 best_score = min(score, best_score)
+                beta = min(beta, best_score)
+
+            if beta <= alpha:
+                break
 
         return best_score, move
 
@@ -117,10 +130,3 @@ class MinMax(Opponent):
                 piece_list.append(piece)
 
         return piece_list
-
-
-class MinMaxWeight:
-    WINN = maxsize
-    LOSE = -maxsize
-    PICE = 1
-    KING = 1.5
