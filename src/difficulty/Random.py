@@ -1,6 +1,3 @@
-import math
-
-from checkers.game import Game
 from random import randrange
 
 from difficulty.Opponent import Opponent

@@ -7,23 +7,27 @@ from difficulty.Opponent import Opponent
 
 
 class MinMax(Opponent):
-    def __init__(self, player, branch_depth):
+    def __init__(self, player: int, branch_depth: int):
         """
         Create a new MinMax Opponent
         :param player: The player number
         :param branch_depth: The depth of the min max calculation
         """
         super().__init__(player)
-        self.branch_depth = branch_depth
+        self.branch_depth: int = branch_depth
 
     def _make_next_move(self):
         """
         Make a move based on the min max algorithm
         :return: None
         """
-        game_copy = copy.deepcopy(self.game)
+
+        # Check if it is the turn of the computer
+        if self.game.whose_turn() is not self.player:
+            return
+
+        game_copy: Game = copy.deepcopy(self.game)
         score, move = self._min_max(game_copy, maximize_score=True)
-        print(score)
         self.game.move(move)
 
     def _min_max(self, game: Game, maximize_score: bool, depth=0):
@@ -37,21 +41,24 @@ class MinMax(Opponent):
         if game.is_over():
             winner = game.get_winner()
             if winner == self.player:
-                return MinMaxWeight.WINN
-            return MinMaxWeight.LOSE
+                return MinMaxWeight.WINN, None
+            return MinMaxWeight.LOSE, None
 
         # Check if the max depth is reached
         if depth >= self.branch_depth:
-            return self.evaluate_path(game)
+            return self.evaluate_path(game), None
 
         # Get the smallest/largest number to initialize the var
-        best_score = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WINN
+        best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WINN
 
         move = None
         # Iterate through the moves and recursively find the best
-        for move in game.get_possible_moves():
 
-            score, _ = self._min_max(copy.deepcopy(game.move(move)), not maximize_score)
+        moves = game.get_possible_moves()
+        for move in moves:
+            updated_game = copy.deepcopy(game)
+            updated_game.move(move)
+            score, _ = self._min_max(updated_game, not maximize_score, depth + 1)
             if maximize_score:
                 best_score = max(score, best_score)
             else:
@@ -92,7 +99,7 @@ class MinMax(Opponent):
     @staticmethod
     def get_active_pieces(game: Game) -> list:
         """
-        Get the active pieces of a game #TODO noch in library
+        Get the active pieces of a game #TODO in library
         :param game: The Game
         :return: A list of still available pieces
         """

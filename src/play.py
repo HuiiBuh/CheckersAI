@@ -1,9 +1,9 @@
 from time import sleep
 
-from difficulty import Random
+from difficulty import Opponent
 
 
-def play_game(game: Random, player: int) -> None:
+def play_game(game: Opponent, player: int) -> None:
     """
     Play the game
     :param game: The game object
