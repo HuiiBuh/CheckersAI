@@ -36,7 +36,7 @@ class Opponent:
         else:
             print("It is your turn")
 
-    def move(self, start_position: tuple, end_position: tuple):
+    def move(self, start_position: list, end_position: list):
         """
         Move a piece
         :param start_position: The starting coordinates of the piece
@@ -47,6 +47,18 @@ class Opponent:
         # Check if it is the turn of the user
         if self.game.whose_turn() is self.player:
             raise PermissionError("It is not your turn")
+
+        # Convert the start char to coordinates
+        if ord(start_position[0]) >= 97:
+            start_position[0] = ord(start_position[0]) - 96
+        else:
+            start_position[0] = ord(start_position[0]) - 64
+
+        # Convert the end char to coordinates
+        if ord(end_position[0]) >= 97:
+            end_position[0] = ord(end_position[0]) - 96
+        else:
+            end_position[0] = ord(end_position[0]) - 64
 
         # Check if the input is in the right range
         if not (0 < start_position[0] < 9 or 0 < start_position[1] < 9
@@ -62,18 +74,18 @@ class Opponent:
 
         # Do the move
         self.game.move(move)
-        self._make_next_move()
         return True
 
     @staticmethod
-    def _coordinates_to_position(x_y: tuple) -> int:
+    def _coordinates_to_position(x_y: list) -> int:
         """
         Takes the coordinates and transforms them into the checkers position
         :param x_y: X and Y Coordinates
         :return: The checkers position equivalent to the coordinates
         """
-        position: int = (x_y[1] - 1) * 4
-        position += int(x_y[0] / 2 + 1)
+
+        position = (9 - x_y[1] - 1) * 4
+        position += math.ceil(x_y[0] / 2)
         return position
 
     @staticmethod
@@ -84,17 +96,19 @@ class Opponent:
         :return: The X and Y coordinates
         """
 
-        y = math.ceil((position / 4))
+        # Round up the y position
+        y = 9 - (math.ceil((position / 4)))
 
-        y_mod = -1 + (y % 2)
+        y_mod = y % 2
         mod = (position % 4)
 
         if mod != 0:
             x = 2 * mod + y_mod
         else:
-            x = 8 + y_mod
+            x = 8 - y_mod
 
-        return x, y
+        x = str(chr(x + 64))
+        return x, str(y)
 
     def _make_next_move(self):
         pass

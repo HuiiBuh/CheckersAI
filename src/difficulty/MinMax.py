@@ -1,6 +1,7 @@
 import copy
 from sys import maxsize
 
+import time
 from checkers.game import Game
 
 from difficulty.Opponent import Opponent
@@ -27,7 +28,13 @@ class MinMax(Opponent):
             return
 
         game_copy: Game = copy.deepcopy(self.game)
+
+        start = time.time()
         score, move = self._min_max(game_copy, maximize_score=True)
+        print(time.time() - start)
+
+        print(move)
+        print(f"{self._position_to_coordinates(move[0])}/{self._position_to_coordinates(move[1])}")
         self.game.move(move)
 
     def _min_max(self, game: Game, maximize_score: bool, depth=0):
