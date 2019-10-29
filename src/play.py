@@ -16,7 +16,7 @@ def play_game(game: RandomGame, player: int) -> None:
         sleep(0.1)
         if game.game.whose_turn() == player:
             start_position: tuple = (int(input("X Start: ")), int(input("Y Start: ")))
-            end_position: tuple = (int(input("X Start: ")), int(input("Y Start: ")))
+            end_position: tuple = (int(input("X End: ")), int(input("Y End: ")))
             game.move(start_position, end_position)
 
     winner = game.game.get_winner()

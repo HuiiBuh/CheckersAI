@@ -1,8 +1,13 @@
+import math
+
 from checkers.game import Game
 from random import randrange
 
 
 class RandomGame:
+    """
+    A Random game
+    """
 
     def __init__(self, player: int):
         """
@@ -54,7 +59,9 @@ class RandomGame:
             raise ValueError("The position is only allowed to be between 1 and 8")
 
         # Create the move tuple
-        move: tuple = (start_position[0] * start_position[1] / 2, end_position[0], end_position[1] / 2)
+        move: list = [self._coordinates_to_position(start_position), self._coordinates_to_position(end_position)]
+
+        possible_moves = self.game.get_possible_moves()
 
         # Check if the move is possible
         if move not in self.game.get_possible_moves():
@@ -64,6 +71,37 @@ class RandomGame:
         self.game.move(move)
         self._make_next_move()
         return True
+
+    @staticmethod
+    def _coordinates_to_position(x_y: tuple) -> int:
+        """
+        Takes the coordinates and transforms them into the checkers position
+        :param x_y: X and Y Coordinates
+        :return: The checkers position equivalent to the coordinates
+        """
+        position: int = (x_y[1] - 1) * 4
+        position += int(x_y[0] / 2 + 1)
+        return position
+
+    @staticmethod
+    def _position_to_coordinates(position: int) -> tuple:
+        """
+        Converts the checkers position into coordinates
+        :param position: The position in checkers notation
+        :return: The X and Y coordinates
+        """
+
+        y = math.ceil((position / 4))
+
+        ymod = -1 + (y % 2)
+        mod = (position % 4)
+
+        if mod != 0:
+            x = 2 * mod + ymod
+        else:
+            x = 8 + ymod
+
+        return x, y
 
     def _make_next_move(self) -> None:
         """
@@ -83,5 +121,6 @@ class RandomGame:
         take_move = randrange(move_count)
 
         # Move a pice
-        print(f"Moved: {possible_moves[take_move]}")
+        print(f"Moved: {self._position_to_coordinates(possible_moves[take_move][0])}"
+              f"/{self._position_to_coordinates(possible_moves[take_move][1])}")
         self.game.move(possible_moves[take_move])
