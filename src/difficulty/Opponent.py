@@ -1,14 +1,9 @@
 import math
 
 from checkers.game import Game
-from random import randrange
 
 
-class RandomGame:
-    """
-    A Random game
-    """
-
+class Opponent:
     def __init__(self, player: int):
         """
         Generate a new Random game
@@ -43,9 +38,9 @@ class RandomGame:
 
     def move(self, start_position: tuple, end_position: tuple):
         """
-        Move a pice
-        :param start_position: The starting coordinates of the pice
-        :param end_position: The end coordinates of the pice
+        Move a piece
+        :param start_position: The starting coordinates of the piece
+        :param end_position: The end coordinates of the piece
         :return: Success
         """
 
@@ -60,8 +55,6 @@ class RandomGame:
 
         # Create the move tuple
         move: list = [self._coordinates_to_position(start_position), self._coordinates_to_position(end_position)]
-
-        possible_moves = self.game.get_possible_moves()
 
         # Check if the move is possible
         if move not in self.game.get_possible_moves():
@@ -93,34 +86,15 @@ class RandomGame:
 
         y = math.ceil((position / 4))
 
-        ymod = -1 + (y % 2)
+        y_mod = -1 + (y % 2)
         mod = (position % 4)
 
         if mod != 0:
-            x = 2 * mod + ymod
+            x = 2 * mod + y_mod
         else:
-            x = 8 + ymod
+            x = 8 + y_mod
 
         return x, y
 
-    def _make_next_move(self) -> None:
-        """
-        Make a random next move
-        :return: None
-        """
-
-        # Check if it is the turn of the computer
-        if self.game.whose_turn() is not self.player:
-            return
-
-        # Get all possible moves
-        possible_moves: list = self.game.get_possible_moves()
-
-        # Count the Moves and randomly select the right move
-        move_count: int = len(possible_moves)
-        take_move = randrange(move_count)
-
-        # Move a pice
-        print(f"Moved: {self._position_to_coordinates(possible_moves[take_move][0])}"
-              f"/{self._position_to_coordinates(possible_moves[take_move][1])}")
-        self.game.move(possible_moves[take_move])
+    def _make_next_move(self):
+        pass
