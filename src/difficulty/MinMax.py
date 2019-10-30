@@ -34,18 +34,15 @@ class MinMax(Opponent):
         if self.game.whose_turn() is not self.player:
             return
 
-        game_copy: Game = copy.deepcopy(self.game)
-
         start = time.time()
-        score, move = self._min_max(game_copy, maximize_score=True)
+        score, move = self._min_max(self.game, maximize_score=True)
         print(time.time() - start)
 
         print(move)
         print(f"{self._position_to_coordinates(move[0])}/{self._position_to_coordinates(move[1])}")
         self.game.move(move)
 
-    def _min_max(self, game: Game, maximize_score: bool, alpha=MinMaxWeight.LOSE, beta=MinMaxWeight.WIN,
-                 depth=0):
+    def _min_max(self, game: Game, maximize_score: bool, alpha=MinMaxWeight.LOSE, beta=MinMaxWeight.WIN, depth=0):
         """
         Calculate the min max
         :param depth: The current depth of the branch
@@ -65,16 +62,17 @@ class MinMax(Opponent):
 
         # Get the smallest/largest number to initialize the var
         best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WIN
+        best_move = None
 
         move = None
         # Iterate through the moves and recursively find the best
-
-        moves = game.get_possible_moves()
-        for move in moves:
+        for move in game.get_possible_moves():
             updated_game = copy.deepcopy(game)
             updated_game.move(move)
             score, _ = self._min_max(updated_game, not maximize_score, alpha=alpha, beta=beta, depth=depth + 1)
             if maximize_score:
+                if score > best_score:
+                    best_move = move
                 best_score = max(score, best_score)
                 alpha = max(alpha, best_score)
             else:
@@ -84,7 +82,7 @@ class MinMax(Opponent):
             if beta <= alpha:
                 break
 
-        return best_score, move
+        return best_score, best_move
 
     def evaluate_path(self, game: Game):
         """
