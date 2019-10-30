@@ -1,1 +1,1 @@
-from .RandomGame import RandomGame
+from .Random import Random

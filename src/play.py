@@ -1,9 +1,10 @@
 from time import sleep
 
-from difficulty import RandomGame
+from Colors import COLOUR
+from difficulty import Opponent
 
 
-def play_game(game: RandomGame, player: int) -> None:
+def play_game(game: Opponent, player: int) -> None:
     """
     Play the game
     :param game: The game object
@@ -15,9 +16,16 @@ def play_game(game: RandomGame, player: int) -> None:
     while not game.game.is_over():
         sleep(0.1)
         if game.game.whose_turn() == player:
-            start_position: tuple = (int(input("X Start: ")), int(input("Y Start: ")))
-            end_position: tuple = (int(input("X Start: ")), int(input("Y Start: ")))
-            game.move(start_position, end_position)
+
+            start_position: list = [input("X Start: "), int(input("Y Start: "))]
+            end_position: list = [input("X End: "), int(input("Y End: "))]
+
+            try:
+                game.move(start_position, end_position)
+            except Exception as e:
+                print(COLOUR.RED + str(e) + COLOUR.END + "\n\n")
+        else:
+            game._make_next_move()
 
     winner = game.game.get_winner()
     print(f"The winner is player {winner}.")
