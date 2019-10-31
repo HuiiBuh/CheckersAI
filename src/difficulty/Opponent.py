@@ -73,7 +73,7 @@ class Opponent:
         else:
             x_y[0] = ord(x_y[0]) - 64
 
-        position = (9 - x_y[1] - 1) * 4
+        position: int = (9 - x_y[1] - 1) * 4
         position += math.ceil(x_y[0] / 2)
         return position
 
@@ -86,18 +86,19 @@ class Opponent:
         """
 
         # Round up the y position
-        y = 9 - (math.ceil(position / 4))
+        y: int = 9 - math.ceil(position / 4)
 
-        y_mod = y % 2
-        mod = (position % 4)
+        y_mod: int = y % 2
+        mod: int = (position % 4)
 
         if mod != 0:
-            x = 2 * mod + y_mod
+            x: int = 2 * mod + y_mod
         else:
             y -= 1
-            x = 8 - y_mod
+            x: int = 8 - y_mod
 
-        x = str(chr(x + 64))
+        # convert the number to a char
+        x: str = str(chr(x + 64))
         return x, str(y)
 
     def make_next_move(self):
@@ -105,4 +106,4 @@ class Opponent:
         Has to be overwritten
         :return: None
         """
-        pass
+        raise NotImplementedError("This method has to be overwritten")
