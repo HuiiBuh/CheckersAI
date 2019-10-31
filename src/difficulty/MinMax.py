@@ -1,7 +1,7 @@
 import copy
+import time
 from sys import maxsize
 
-import time
 from checkers.game import Game
 
 from difficulty.Opponent import Opponent
@@ -10,7 +10,7 @@ from difficulty.Opponent import Opponent
 class MinMaxWeight:
     WIN = maxsize
     LOSE = -maxsize
-    PICE = 1
+    PIECE = 1
     KING = 1.5
 
 
@@ -24,7 +24,7 @@ class MinMax(Opponent):
         super().__init__(player)
         self.branch_depth: int = branch_depth
 
-    def _make_next_move(self):
+    def make_next_move(self):
         """
         Make a move based on the min max algorithm
         :return: None
@@ -64,7 +64,6 @@ class MinMax(Opponent):
         best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WIN
         best_move = None
 
-        move = None
         # Iterate through the moves and recursively find the best
         for move in game.get_possible_moves():
             updated_game = copy.deepcopy(game)
@@ -104,13 +103,13 @@ class MinMax(Opponent):
                     if piece.king:
                         computer_score += MinMaxWeight.KING
                     else:
-                        computer_score += MinMaxWeight.PICE
+                        computer_score += MinMaxWeight.PIECE
                 else:
                     # Get the type of the piece and add a value
                     if piece.king:
                         human_score += MinMaxWeight.KING
                     else:
-                        human_score += MinMaxWeight.PICE
+                        human_score += MinMaxWeight.PIECE
 
         return computer_score - human_score
 

@@ -8,7 +8,7 @@ class Random(Opponent):
     A Random game
     """
 
-    def _make_next_move(self) -> None:
+    def make_next_move(self) -> None:
         """
         Make a random next moves
         :return: None

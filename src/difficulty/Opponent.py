@@ -32,7 +32,7 @@ class Opponent:
         :return: None
         """
         if self.game.whose_turn() is self.player:
-            self._make_next_move()
+            self.make_next_move()
         else:
             print("It is your turn")
 
@@ -47,23 +47,6 @@ class Opponent:
         # Check if it is the turn of the user
         if self.game.whose_turn() is self.player:
             raise PermissionError("It is not your turn")
-
-        # Convert the start char to coordinates
-        if ord(start_position[0]) >= 97:
-            start_position[0] = ord(start_position[0]) - 96
-        else:
-            start_position[0] = ord(start_position[0]) - 64
-
-        # Convert the end char to coordinates
-        if ord(end_position[0]) >= 97:
-            end_position[0] = ord(end_position[0]) - 96
-        else:
-            end_position[0] = ord(end_position[0]) - 64
-
-        # Check if the input is in the right range
-        if not (0 < start_position[0] < 9 or 0 < start_position[1] < 9
-                or 0 < end_position[0] < 9 or 0 < end_position[1] < 9):
-            raise ValueError("The position is only allowed to be between 1 and 8")
 
         # Create the move tuple
         move: list = [self._coordinates_to_position(start_position), self._coordinates_to_position(end_position)]
@@ -84,6 +67,12 @@ class Opponent:
         :return: The checkers position equivalent to the coordinates
         """
 
+        # Convert the start char to coordinates
+        if ord(x_y[0]) >= 97:
+            x_y[0] = ord(x_y[0]) - 96
+        else:
+            x_y[0] = ord(x_y[0]) - 64
+
         position = (9 - x_y[1] - 1) * 4
         position += math.ceil(x_y[0] / 2)
         return position
@@ -97,7 +86,7 @@ class Opponent:
         """
 
         # Round up the y position
-        y = 9 - (math.ceil((position / 4)))
+        y = 9 - (math.ceil(position / 4))
 
         y_mod = y % 2
         mod = (position % 4)
@@ -105,10 +94,15 @@ class Opponent:
         if mod != 0:
             x = 2 * mod + y_mod
         else:
+            y -= 1
             x = 8 - y_mod
 
         x = str(chr(x + 64))
         return x, str(y)
 
-    def _make_next_move(self):
+    def make_next_move(self):
+        """
+        Has to be overwritten
+        :return: None
+        """
         pass
