@@ -1,6 +1,6 @@
 from difficulty.MinMax import MinMax
-from play import play_game
 from difficulty.Random import Random
+from play import play_game
 
 # difficulty: int = select_difficulty()
 # order: int = select_order()

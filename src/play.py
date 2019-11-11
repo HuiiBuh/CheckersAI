@@ -25,7 +25,7 @@ def play_game(game: Opponent, player: int) -> None:
             except Exception as e:
                 print(COLOUR.RED + str(e) + COLOUR.END + "\n\n")
         else:
-            game._make_next_move()
+            game.make_next_move()
 
     winner = game.game.get_winner()
     print(f"The winner is player {winner}.")
