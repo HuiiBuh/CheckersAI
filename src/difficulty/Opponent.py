@@ -1,9 +1,9 @@
 import math
-
+from abc import ABC, abstractmethod
 from checkers.game import Game
 
 
-class Opponent:
+class Opponent(ABC):
     def __init__(self, player: int):
         """
         Generate a new Random game
@@ -101,6 +101,7 @@ class Opponent:
         x: str = str(chr(x + 64))
         return x, str(y)
 
+    @abstractmethod
     def make_next_move(self):
         """
         Has to be overwritten

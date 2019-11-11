@@ -1,12 +1,12 @@
 import unittest
 from math import ceil
 
-from difficulty.Opponent import Opponent
+from difficulty import Random
 
 
 class TestPosition(unittest.TestCase):
     def setUp(self):
-        self.opponent = Opponent(1)
+        self.opponent = Random(1)
 
     def test_position_to_coordinates(self):
         for position in range(1, 19):
