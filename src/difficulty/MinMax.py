@@ -1,4 +1,5 @@
 import copy
+import random
 import time
 from sys import maxsize
 
@@ -10,8 +11,9 @@ from difficulty.Opponent import Opponent
 class MinMaxWeight:
     WIN = maxsize
     LOSE = -maxsize
-    PIECE = 1
-    KING = 1.5
+    POSITION = 1
+    PIECE = 6
+    KING = 10
 
 
 class MinMax(Opponent):
@@ -42,7 +44,8 @@ class MinMax(Opponent):
         print(f"{self._position_to_coordinates(move[0])}/{self._position_to_coordinates(move[1])}")
         self.game.move(move)
 
-    def _min_max(self, game: Game, maximize_score: bool, alpha=MinMaxWeight.LOSE, beta=MinMaxWeight.WIN, depth=0):
+    def _min_max(self, game: Game, maximize_score: bool, alpha=MinMaxWeight.LOSE, beta=MinMaxWeight.WIN, depth=0,
+                 previous_move=None):
         """
         Calculate the min max
         :param depth: The current depth of the branch
@@ -53,33 +56,44 @@ class MinMax(Opponent):
         if game.is_over():
             winner = game.get_winner()
             if winner == self.player:
-                return MinMaxWeight.WIN, None
-            return MinMaxWeight.LOSE, None
+                return MinMaxWeight.WIN, previous_move
+            return MinMaxWeight.LOSE, previous_move
 
         # Check if the max depth is reached
         if depth >= self.branch_depth:
-            return self.evaluate_path(game), None
+            return self.evaluate_path(game), previous_move
 
         # Get the smallest/largest number to initialize the var
         best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WIN
         best_move = None
 
+        possible_moves = game.get_possible_moves()
+        possible_moves = random.sample(possible_moves, len(possible_moves))
+
         # Iterate through the moves and recursively find the best
-        for move in game.get_possible_moves():
+        for move in possible_moves:
             updated_game = copy.deepcopy(game)
             updated_game.move(move)
-            score, _ = self._min_max(updated_game, not maximize_score, alpha=alpha, beta=beta, depth=depth + 1)
-            if maximize_score:
-                if score > best_score:
-                    best_move = move
-                best_score = max(score, best_score)
+            returned_best_score, returned_best_move = self._min_max(updated_game, not maximize_score,
+                                                                    alpha=alpha,
+                                                                    beta=beta,
+                                                                    depth=depth + 1,
+                                                                    previous_move=move)
+            if maximize_score and best_score < returned_best_score:
+                best_score = returned_best_score
+                best_move = move
                 alpha = max(alpha, best_score)
-            else:
-                best_score = min(score, best_score)
+
+                if beta <= alpha:
+                    break
+
+            elif not maximize_score and returned_best_score < best_score:
+                best_score = returned_best_score
+                best_move = move
                 beta = min(beta, best_score)
 
-            if beta <= alpha:
-                break
+                if beta <= alpha:
+                    break
 
         return best_score, best_move
 
@@ -95,6 +109,7 @@ class MinMax(Opponent):
 
         # For every piece in the ame
         for piece in game.board.pieces:
+
             # Check if the piece is still available
             if not piece.captured:
                 # Get the owner of the piece
@@ -103,12 +118,22 @@ class MinMax(Opponent):
                     if piece.king:
                         computer_score += MinMaxWeight.KING
                     else:
+                        if self.player == 2 and int(piece.position / 4) <= 4:
+                            computer_score += MinMaxWeight.POSITION
+                        elif self.player == 1 and int(piece.position / 4) >= 5:
+                            computer_score += MinMaxWeight.POSITION
+
                         computer_score += MinMaxWeight.PIECE
                 else:
                     # Get the type of the piece and add a value
                     if piece.king:
                         human_score += MinMaxWeight.KING
                     else:
+                        if self.player == (3 - self.player) and int(piece.position / 4) >= 5:
+                            human_score += MinMaxWeight.POSITION
+                        elif self.player == (3 - self.player) and int(piece.position / 4) <= 4:
+                            human_score += MinMaxWeight.POSITION
+
                         human_score += MinMaxWeight.PIECE
 
         return computer_score - human_score

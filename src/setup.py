@@ -5,7 +5,7 @@ def select_order(error: str = "") -> int:
     """
     Asks the user for the order
     :param error: The error message that will be displayed if th user makes a wrong input
-    :return: The Order 1 for the computer first or 2 for the human first
+    :return: The Order 2 for the computer first or 1 for the human first
     """
     if error != "":
         print(COLOUR.RED + error + COLOUR.END)
@@ -27,10 +27,16 @@ def select_difficulty(error: str = "") -> int:
     if error != "":
         print(COLOUR.RED + error + COLOUR.END)
 
-    print("Select the difficulty 0: Random 1: Self learning KI")
+    print("Select the difficulty between 0 and 9")
 
     selected_difficulty: str = input("Difficulty: ")
-    if not (selected_difficulty == "0" or selected_difficulty == "1"):
-        return int(select_difficulty(error=f"You did not input 0 or 1 but {selected_difficulty}"))
+
+    try:
+        selected_difficulty: int = int(selected_difficulty)
+    except ValueError:
+        return int(select_difficulty(error=f"You input was not between 0 and 9 but {selected_difficulty}"))
+
+    if not (0 <= selected_difficulty <= 9):
+        return int(select_difficulty(error=f"You input was not between 0 and 9 but {selected_difficulty}"))
 
     return int(selected_difficulty)
