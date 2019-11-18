@@ -6,6 +6,7 @@ from setup import select_difficulty, select_order
 difficulty: int = select_difficulty()
 order: int = select_order()
 
+
 if difficulty == 0:
     random_game: Random = Random(3 - order)
     play_game(random_game, order)

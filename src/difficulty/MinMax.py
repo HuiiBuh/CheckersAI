@@ -2,12 +2,11 @@ import copy
 import random
 import time
 import multiprocessing
-from ctypes import c_double
-from multiprocessing import Process, Value, Array
+from multiprocessing import Process, Array
 from sys import maxsize
+from pip._vendor.msgpack.fallback import xrange
 
 from checkers.game import Game
-from pip._vendor.msgpack.fallback import xrange
 
 from difficulty.Opponent import Opponent
 
@@ -66,7 +65,7 @@ class MinMax(Opponent):
         # Create a process for each coer
         for i in range(cores):
             moves = possible_moves[i]
-            position = 0 if i == 0 else i * 3 - 1
+            position = i * 3
 
             process_list.append(
                 Process(target=self._min_max, args=(self.game, True),
@@ -80,7 +79,7 @@ class MinMax(Opponent):
         best_score_move = [MinMaxWeight.LOSE, []]
 
         # Get the best score
-        for i in range(len(process_move_list) - 1):
+        for i in range(0, len(process_move_list) - 1, 3):
             score = process_move_list[i]
             if score > best_score_move[0]:
                 move_1 = process_move_list[i + 1]
@@ -93,7 +92,7 @@ class MinMax(Opponent):
         return best_score_move
 
     def _min_max(self, game: Game, maximize_score: bool, alpha=MinMaxWeight.LOSE, beta=MinMaxWeight.WIN, depth=0,
-                 previous_move=None, possible_moves=None, thread_move_list=None, position=None):
+                 possible_moves=None, thread_move_list=None, position=None):
         """
         Calculate the min max
         :param depth: The current depth of the branch
@@ -106,12 +105,12 @@ class MinMax(Opponent):
         if game.is_over():
             winner = game.get_winner()
             if winner == self.player:
-                return MinMaxWeight.WIN, previous_move
-            return MinMaxWeight.LOSE, previous_move
+                return MinMaxWeight.WIN, None
+            return MinMaxWeight.LOSE, None
 
         # Check if the max depth is reached
         if depth >= self.branch_depth:
-            return self.evaluate_path(game), previous_move
+            return self.evaluate_path(game), None
 
         # Get the smallest/largest number to initialize the var
         best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WIN
@@ -128,8 +127,7 @@ class MinMax(Opponent):
             returned_best_score, returned_best_move = self._min_max(updated_game, not maximize_score,
                                                                     alpha=alpha,
                                                                     beta=beta,
-                                                                    depth=depth + 1,
-                                                                    previous_move=move)
+                                                                    depth=depth + 1)
             if maximize_score and best_score < returned_best_score:
                 best_score = returned_best_score
                 best_move = move
@@ -146,6 +144,7 @@ class MinMax(Opponent):
                 if beta <= alpha:
                     break
 
+        # Update the shared variables
         if thread_move_list:
             thread_move_list[position] = best_score
             thread_move_list[position + 1] = best_move[0]

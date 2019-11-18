@@ -27,16 +27,16 @@ def select_difficulty(error: str = "") -> int:
     if error != "":
         print(COLOUR.RED + error + COLOUR.END)
 
-    print("Select the difficulty between 0 and 9")
+    print("Select the difficulty between 0 and 11")
 
     selected_difficulty: str = input("Difficulty: ")
 
     try:
         selected_difficulty: int = int(selected_difficulty)
     except ValueError:
-        return int(select_difficulty(error=f"You input was not between 0 and 9 but {selected_difficulty}"))
+        return int(select_difficulty(error=f"You input was not between 0 and 11 but {selected_difficulty}"))
 
-    if not (0 <= selected_difficulty <= 9):
-        return int(select_difficulty(error=f"You input was not between 0 and 9 but {selected_difficulty}"))
+    if not (0 <= selected_difficulty <= 11):
+        return int(select_difficulty(error=f"You input was not between 0 and 11 but {selected_difficulty}"))
 
     return int(selected_difficulty)
