@@ -4,3 +4,4 @@ Checkers.iml
 .mypy_cache
 venv
 *.pyc
+CheckersAI.iml

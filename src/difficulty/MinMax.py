@@ -41,10 +41,12 @@ class MinMax(Opponent):
 
         start = time.time()
         score, move = self._start_min_max()
+        
         print(time.time() - start)
+        print("")
+        print(f"Score: {score}")
+        print(f"Move: {self._position_to_coordinates(move[0])}/{self._position_to_coordinates(move[1])}")
 
-        print(move)
-        print(f"{self._position_to_coordinates(move[0])}/{self._position_to_coordinates(move[1])}")
         self.game.move(move)
 
     def _start_min_max(self):
