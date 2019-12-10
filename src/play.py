@@ -17,15 +17,21 @@ def play_game(game: Opponent, player: int) -> None:
         sleep(0.1)
         if game.game.whose_turn() == player:
 
-            start_position: list = [input("X Start: "), int(input("Y Start: "))]
-            end_position: list = [input("X End: "), int(input("Y End: "))]
+            start_position: str = input("Start: ")
+            end_position: str = input("End: ")
 
-            try:
-                game.move(start_position, end_position)
-            except Exception as e:
-                print(COLOUR.RED + str(e) + COLOUR.END + "\n\n")
+            if not (start_position.isdigit() and end_position.isdigit()):
+                print(COLOUR.RED + "You can only input numbers" + COLOUR.END)
+            else:
+                start_position: int = int(start_position)
+                end_position: int = int(end_position)
+
+                try:
+                    game.move(start_position, end_position)
+                except Exception as e:
+                    print(COLOUR.RED + str(e) + COLOUR.END + "\n\n")
         else:
             game.make_next_move()
 
     winner = game.game.get_winner()
-    print(f"The winner is player {winner}.")
+    print(COLOUR.GREEN + f"The winner is player {winner}." + COLOUR.END)
