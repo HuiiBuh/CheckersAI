@@ -26,6 +26,7 @@ class MinMax(Opponent):
         :param player: The player number
         :param branch_depth: The depth of the min max calculation
         """
+
         super().__init__(player)
         self.branch_depth: int = branch_depth
 
@@ -45,11 +46,11 @@ class MinMax(Opponent):
         print(time.time() - start)
         print("")
         print(f"Score: {score}")
-        print(f"Move: {self._position_to_coordinates(move[0])}/{self._position_to_coordinates(move[1])}")
+        print(f"Move: {move}")
 
         self.game.move(move)
 
-    def _start_min_max(self):
+    def _start_min_max(self) -> list:
         # Get the CPU count
         cores = multiprocessing.cpu_count()
 
@@ -63,22 +64,24 @@ class MinMax(Opponent):
 
         # The shared variables
         process_move_list = Array("i", range(cores * 3))
+        for i in range(len(process_move_list)):
+            process_move_list[i] = 0
 
-        # Create a process for each coer
+        # Create a process for each core
         for i in range(cores):
             moves = possible_moves[i]
             position = i * 3
 
             process_list.append(
                 Process(target=self._min_max, args=(self.game, True),
-                        kwargs={"possible_moves": moves, "thread_move_list": process_move_list, "position": position}))
+                        kwargs={"possible_moves": moves, "process_move_list": process_move_list, "position": position}))
             process_list[i].start()
 
         # Join all cores
         for i in range(cores):
             process_list[i].join()
 
-        best_score_move = [MinMaxWeight.LOSE, []]
+        best_score_move: list = [MinMaxWeight.LOSE, []]
 
         # Get the best score
         for i in range(0, len(process_move_list) - 1, 3):
@@ -88,13 +91,11 @@ class MinMax(Opponent):
                 move_2 = process_move_list[i + 2]
                 best_score_move = [score, [move_1, move_2]]
 
-            i += 2
-
         # Return the best move
         return best_score_move
 
     def _min_max(self, game: Game, maximize_score: bool, alpha=MinMaxWeight.LOSE, beta=MinMaxWeight.WIN, depth=0,
-                 possible_moves=None, thread_move_list=None, position=None):
+                 possible_moves=None, process_move_list=None, position=None):
         """
         Calculate the min max
         :param depth: The current depth of the branch
@@ -102,8 +103,6 @@ class MinMax(Opponent):
         """
 
         # Check if the game is over
-        if thread_move_list is None:
-            thread_move_list = []
         if game.is_over():
             winner = game.get_winner()
             if winner == self.player:
@@ -147,10 +146,10 @@ class MinMax(Opponent):
                     break
 
         # Update the shared variables
-        if thread_move_list:
-            thread_move_list[position] = best_score
-            thread_move_list[position + 1] = best_move[0]
-            thread_move_list[position + 2] = best_move[1]
+        if process_move_list and best_move:
+            process_move_list[position] = best_score
+            process_move_list[position + 1] = best_move[0]
+            process_move_list[position + 2] = best_move[1]
 
         return best_score, best_move
 

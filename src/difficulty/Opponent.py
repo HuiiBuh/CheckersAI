@@ -36,7 +36,7 @@ class Opponent(ABC):
         else:
             print("It is your turn")
 
-    def move(self, start_position: list, end_position: list):
+    def move(self, start_position: int, end_position: int):
         """
         Move a piece
         :param start_position: The starting coordinates of the piece
@@ -49,7 +49,7 @@ class Opponent(ABC):
             raise PermissionError("It is not your turn")
 
         # Create the move tuple
-        move: list = [self._coordinates_to_position(start_position), self._coordinates_to_position(end_position)]
+        move = [start_position, end_position]
 
         # Check if the move is possible
         if move not in self.game.get_possible_moves():
