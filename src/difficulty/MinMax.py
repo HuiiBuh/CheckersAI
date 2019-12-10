@@ -42,9 +42,12 @@ class MinMax(Opponent):
 
         start = time.time()
         score, move = self._start_min_max()
+        
         print(time.time() - start)
+        print("")
+        print(f"Score: {score}")
+        print(f"Move: {move}")
 
-        print(move)
         self.game.move(move)
 
     def _start_min_max(self) -> list:
