@@ -1,4 +1,3 @@
-import math
 from abc import ABC, abstractmethod
 from time import sleep
 
@@ -69,7 +68,7 @@ class Opponent(ABC):
         Move a piece
         :param start_position: The starting coordinates of the piece
         :param end_position: The end coordinates of the piece
-        :return: Success
+        :return: None
         """
 
         # Check if it is the turn of the user
@@ -85,7 +84,6 @@ class Opponent(ABC):
 
         # Do the move
         self.game.move(move)
-        return True
 
     @abstractmethod
     def make_next_move(self):
@@ -94,45 +92,3 @@ class Opponent(ABC):
         :return: None
         """
         raise NotImplementedError("This method has to be overwritten")
-
-    @staticmethod
-    def _coordinates_to_position(x_y: list) -> int:
-        """
-        Takes the coordinates and transforms them into the checkers position
-        :param x_y: X and Y Coordinates
-        :return: The checkers position equivalent to the coordinates
-        """
-
-        # Convert the start char to coordinates
-        if ord(x_y[0]) >= 97:
-            x_y[0] = ord(x_y[0]) - 96
-        else:
-            x_y[0] = ord(x_y[0]) - 64
-
-        position: int = (9 - x_y[1] - 1) * 4
-        position += math.ceil(x_y[0] / 2)
-        return position
-
-    @staticmethod
-    def _position_to_coordinates(position: int) -> tuple:
-        """
-        Converts the checkers position into coordinates
-        :param position: The position in checkers notation
-        :return: The X and Y coordinates
-        """
-
-        # Round up the y position
-        y: int = 9 - math.ceil(position / 4)
-
-        y_mod: int = y % 2
-        mod: int = (position % 4)
-
-        if mod != 0:
-            x: int = 2 * mod + y_mod
-        else:
-            y -= 1
-            x: int = 8 - y_mod
-
-        # convert the number to a char
-        x: str = str(chr(x + 64))
-        return x, str(y)
