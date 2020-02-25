@@ -46,3 +46,6 @@ def test_hard_game():
     winner = min_max_game.game.get_winner()
 
     assert winner is 1
+
+
+test_min_max_game()
