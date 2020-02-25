@@ -1,5 +1,4 @@
-from difficulty import Random, MinMax
-from difficulty.MinMaxMP import MinMaxMP
+from difficulty import Random, MinMax, MinMaxMP
 
 
 def test_random_game():
