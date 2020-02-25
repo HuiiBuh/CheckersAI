@@ -1,7 +1,4 @@
-Checkers.iml
-.idea
 .vscode
 .mypy_cache
 venv
 *.pyc
-CheckersAI.iml

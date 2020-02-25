@@ -26,6 +26,4 @@ class Random(Opponent):
         take_move = randrange(move_count)
 
         # Move a piece
-        print(f"Moved: {self._position_to_coordinates(possible_moves[take_move][0])}"
-              f"/{self._position_to_coordinates(possible_moves[take_move][1])}")
         self.game.move(possible_moves[take_move])
