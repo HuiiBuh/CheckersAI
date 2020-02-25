@@ -1,17 +1,10 @@
 # CheckersAI
 
-Algorithm that plays Checkers
+Algorithm that plays Checkers.
 
-## PyPy
+## Board
 
-Install pypy by downloading [this file](https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v7.2.0-linux64.tar.bz2) and extracting it.
-
-```shell script
-tar xf pypy-x.y.z.tar.bz2
-```
-
-Install pip by typing
-
-```shell script
-pypy -m ensurepip
-```
+<div style="text-align: center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Draughts_Notation.svg/1024px-Draughts_Notation.svg.png" style="max-width: 50vw; display: inline-block">
+    <p>Standard checkers board</p>
+</div>
