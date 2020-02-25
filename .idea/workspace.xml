@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f56248-9532-428a-86b5-3c8efacc5b85" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/pythonapp.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/pythonapp.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/difficulty/MinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/difficulty/MinMax.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/test_gameplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_gameplay.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +155,7 @@
       <workItem from="1572538549282" duration="3807000" />
       <workItem from="1572779337736" duration="78000" />
       <workItem from="1572782799989" duration="5000" />
-      <workItem from="1582648477339" duration="8766000" />
+      <workItem from="1582648477339" duration="9321000" />
     </task>
     <servers />
   </component>
