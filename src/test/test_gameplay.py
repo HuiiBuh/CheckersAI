@@ -1,4 +1,5 @@
 from difficulty import Random, MinMax
+from difficulty.MinMaxMP import MinMaxMP
 
 
 def test_random_game():
@@ -33,7 +34,7 @@ def test_min_max_game():
 
 
 def test_hard_game():
-    min_max_game = MinMax(1, 10)
+    min_max_game = MinMaxMP(1, 7)
 
     while not min_max_game.game.is_over():
 
