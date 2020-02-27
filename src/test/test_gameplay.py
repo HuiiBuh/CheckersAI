@@ -46,3 +46,5 @@ def test_hard_game():
     winner = min_max_game.game.get_winner()
     print(f"The winner should be player one. Winner: {winner}")
     assert winner == 1 or winner == 2 or winner is None
+
+test_min_max_game()

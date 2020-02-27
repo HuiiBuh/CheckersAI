@@ -12,9 +12,9 @@ from difficulty.algorithm.Opponent import Opponent
 class MinMaxWeight:
     WIN = maxsize
     LOSE = -maxsize
-    POSITION = 1
-    PIECE = 6
-    KING = 10
+    POSITION = .2
+    PIECE = 1
+    KING = 1.5
 
 
 class MinMax(Opponent):

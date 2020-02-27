@@ -1,4 +1,4 @@
-from random import randrange
+import random
 
 from difficulty.algorithm.Opponent import Opponent
 
@@ -18,12 +18,9 @@ class Random(Opponent):
         if self.game.whose_turn() is not self.player:
             return
 
-        # Get all possible moves
-        possible_moves: list = self.game.get_possible_moves()
-
-        # Count the Moves and randomly select the right move
-        move_count: int = len(possible_moves)
-        take_move = randrange(move_count)
+        # Get a random move
+        possible_moves = self.game.get_possible_moves()
+        move = random.sample(possible_moves, len(possible_moves))[0]
 
         # Move a piece
-        self.game.move(possible_moves[take_move])
+        self.game.move(move)
