@@ -1,2 +1,3 @@
+torch
 # Checkers game engine
 imparaai-checkers

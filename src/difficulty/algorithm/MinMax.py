@@ -6,7 +6,7 @@ from typing import Tuple, List, Optional
 
 from checkers.game import Game
 
-from difficulty.Opponent import Opponent
+from difficulty.algorithm.Opponent import Opponent
 
 
 class MinMaxWeight:

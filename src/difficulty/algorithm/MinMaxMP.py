@@ -9,7 +9,7 @@ from typing import List, Optional
 
 from checkers.game import Game
 
-from difficulty import MinMax
+from . import MinMax
 
 
 class MinMaxWeight:
