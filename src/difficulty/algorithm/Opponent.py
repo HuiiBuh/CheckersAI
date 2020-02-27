@@ -34,7 +34,7 @@ class Opponent(ABC):
 
     def play_game(self) -> None:
         """
-        Play the game
+        Play the game with actual player input
         :return: None
         """
 

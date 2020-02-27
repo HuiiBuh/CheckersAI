@@ -1,6 +1,4 @@
-from difficulty.algorithm.MinMax import MinMax
-from difficulty.algorithm.MinMaxMP import MinMaxMP
-from difficulty.algorithm.Random import Random
+from difficulty import MinMax, MinMaxMP, Random
 
 
 def test_random_game():
@@ -48,7 +46,3 @@ def test_hard_game():
     winner = min_max_game.game.get_winner()
     print(f"The winner should be player one. Winner: {winner}")
     assert winner == 1 or winner == 2 or winner is None
-
-test_random_game()
-test_min_max_game()
-test_hard_game()
