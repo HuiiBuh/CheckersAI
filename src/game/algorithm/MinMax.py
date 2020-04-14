@@ -1,12 +1,11 @@
 import copy
 import random
-import time
-from sys import maxsize
 from typing import Tuple, List, Optional
 
 from checkers.game import Game
+from sys import maxsize
 
-from difficulty.algorithm.Opponent import Opponent
+from game.algorithm.Opponent import Opponent
 
 
 class MinMaxWeight:
@@ -28,7 +27,7 @@ class MinMax(Opponent):
         super().__init__(player)
         self.branch_depth: int = branch_depth
 
-    def make_next_move(self):
+    def calculate_next_move(self) -> Optional[dict]:
         """
         Make a move based on the min max algorithm
         :return: None
@@ -36,63 +35,55 @@ class MinMax(Opponent):
 
         # Check if it is the turn of the computer
         if self.game.whose_turn() is not self.player or self.game.is_over():
-            return
-
-        start_time = time.time()
+            return None
 
         score, move = self._start_min_max()
+        return {'move': move, 'score': score}
 
-        print("")
-        print(f"Score: {score}")
-        print(f"Move: {move}")
-        print(f"Time: {time.time() - start_time}")
-        try:
-            self.game.move(move)
-        except:
-            self.make_next_move()
+    def _start_min_max(self) -> Tuple[float, Optional[int]]:
+        """Call the min max calculation"""
 
-    def _start_min_max(self) -> Tuple[int, Tuple[int, int]]:
+        return self._min_max(game=self.game, maximize_score=True)
 
-        score, move = self._min_max(game=self.game, maximize_score=True)
-
-        # Return the best move
-        return score, move
-
-    def _min_max(self, game: Game, maximize_score: bool, alpha=MinMaxWeight.LOSE, beta=MinMaxWeight.WIN,
-                 depth=0) -> List[Optional[int]]:
+    def _min_max(self, game: Game,
+                 maximize_score: bool,
+                 move_list: List[Tuple[int, int]] = None,
+                 alpha=MinMaxWeight.LOSE, beta=MinMaxWeight.WIN,
+                 depth=0) \
+            -> Tuple[float, Optional[int]]:
         """
         Calculate the min max
         :param depth: The current depth of the branch
-        :return:
+        :return: The score and the move
         """
 
         # Check if the game is over
         if game.is_over():
             winner = game.get_winner()
             if winner == self.player:
-                return [MinMaxWeight.WIN, None]
-            return [MinMaxWeight.LOSE, None]
+                return MinMaxWeight.WIN, None
+            return MinMaxWeight.LOSE, None
 
         # Check if the max depth is reached
         if depth >= self.branch_depth:
-            return [self.evaluate_path(game), None]
+            return self.evaluate_path(game), None
+
+        if not move_list:
+            move_list = game.get_possible_moves()
+            random.shuffle(move_list)
 
         # Get the smallest/largest number to initialize the var
         best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WIN
-        best_move = None
-
-        possible_moves = game.get_possible_moves()
-        # Shuffle the moves
-        possible_moves = random.sample(possible_moves, len(possible_moves))
+        best_move = move_list[0]
 
         # Iterate through the moves and recursively find the best
-        for move in possible_moves:
+        for move in move_list:
             updated_game = copy.deepcopy(game)
             updated_game.move(move)
-            returned_best_score, _ = self._min_max(updated_game, not maximize_score,
-                                                   alpha=alpha,
-                                                   beta=beta,
-                                                   depth=depth + 1)
+            returned_best_score, _ = MinMax._min_max(self, updated_game, not maximize_score,
+                                                     alpha=alpha,
+                                                     beta=beta,
+                                                     depth=depth + 1)
 
             if maximize_score and best_score < returned_best_score:
                 best_score = returned_best_score
@@ -110,7 +101,7 @@ class MinMax(Opponent):
                 if beta <= alpha:
                     break
 
-        return [best_score, best_move]
+        return best_score, best_move
 
     def evaluate_path(self, game: Game):
         """
