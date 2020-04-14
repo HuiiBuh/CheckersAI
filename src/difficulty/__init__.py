@@ -1,3 +1,1 @@
-from .MinMax import MinMax
-from .MinMaxMP import MinMaxMP
-from .Random import Random
+from .algorithm import Random, MinMaxMP, MinMax

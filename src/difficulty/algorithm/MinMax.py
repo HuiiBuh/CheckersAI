@@ -6,15 +6,15 @@ from typing import Tuple, List, Optional
 
 from checkers.game import Game
 
-from difficulty.Opponent import Opponent
+from difficulty.algorithm.Opponent import Opponent
 
 
 class MinMaxWeight:
     WIN = maxsize
     LOSE = -maxsize
-    POSITION = 1
-    PIECE = 6
-    KING = 10
+    POSITION = .2
+    PIECE = 1
+    KING = 1.5
 
 
 class MinMax(Opponent):
@@ -35,19 +35,21 @@ class MinMax(Opponent):
         """
 
         # Check if it is the turn of the computer
-        if self.game.whose_turn() is not self.player:
+        if self.game.whose_turn() is not self.player or self.game.is_over():
             return
 
         start_time = time.time()
 
         score, move = self._start_min_max()
 
-        print(f"Time: {time.time() - start_time}")
-        print(f"Score: {score}")
         print("")
+        print(f"Score: {score}")
         print(f"Move: {move}")
-
-        self.game.move(move)
+        print(f"Time: {time.time() - start_time}")
+        try:
+            self.game.move(move)
+        except:
+            self.make_next_move()
 
     def _start_min_max(self) -> Tuple[int, Tuple[int, int]]:
 
