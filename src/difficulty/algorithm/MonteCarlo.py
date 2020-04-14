@@ -14,8 +14,11 @@ class MonteCarlo(Opponent):
         super().__init__(player)
 
     def make_next_move(self):
+
+        # Get the possible moves
         move_list: list = self.game.board.get_possible_moves()
 
+        # Get the best score
         move_score_list = []
         for move in move_list:
             move_score = self._tree_search(move, self.game, self.move_count)
@@ -47,24 +50,22 @@ class MonteCarlo(Opponent):
 
         score = 0
         for _ in range(move_count):
-            s = self._calculate_to_end(game)
-            score += s
+            score += self._calculate_to_end(game)
 
         return {"move": old_move, "score": score}
 
     def _calculate_to_end(self, game):
         game = copy.deepcopy(game)
+
         while not game.is_over():
             possible_moves = game.get_possible_moves()
-            move = random.sample(possible_moves, len(possible_moves))[0]
-            game.move(move)
+            random.shuffle(possible_moves)
+            game.move(possible_moves[0])
 
-        winner = game.get_winner()
-
-        if winner is None:
+        if game.get_winner() is None:
             return 0
 
-        if winner == self.player:
+        if game.get_winner() == self.player:
             return 1
 
         return -1

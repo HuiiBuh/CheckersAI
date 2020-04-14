@@ -35,7 +35,7 @@ class MinMaxMP(MinMax):
         process_list: List[BaseProcess] = []
         for process_number in range(len(process_move_list)):
             # Args for the process
-            kwargs: dict = {'move_list': move_list, 'queue': communication_queue}
+            kwargs: dict = {'move_list': process_move_list[process_number], 'queue': communication_queue}
             args: tuple = (self.game, True)
 
             # Create the new process
@@ -46,8 +46,8 @@ class MinMaxMP(MinMax):
             process_list.append(process)
 
         # Wait for the processes to terminate
-        for process_number in range(len(process_list)):
-            process_list[process_number].join()
+        for process in process_list:
+            process.join()
 
         # Get the results from the queue
         result_list = []
@@ -55,14 +55,14 @@ class MinMaxMP(MinMax):
             result_list.append(communication_queue.get())
 
         # Create the list with the best moves
-        result_best_move = [MinMaxWeight.LOSE, []]  # type: List[int, List[int]]
+        result_best_move: List[int, List[int]] = [MinMaxWeight.LOSE, []]
 
         # Go through every move in the list
         for result in result_list:
 
             # Get the score and check if the score is better than the score of the current best move
             score = result[0]
-            if score > result_best_move[0]:
+            if score >= result_best_move[0]:
                 result_best_move[0] = score
                 result_best_move[1] = result[1]
 
@@ -97,13 +97,13 @@ class MinMaxMP(MinMax):
         if depth >= self.branch_depth:
             return [self.evaluate_path(game), None]
 
-        # Get the smallest/largest number to initialize the var
-        best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WIN
-        best_move = None
-
         if not move_list:
             move_list = game.get_possible_moves()
-            move_list = random.sample(move_list, len(move_list))
+            random.shuffle(move_list)
+
+        # Get the smallest/largest number to initialize the var
+        best_score: float = MinMaxWeight.LOSE if maximize_score else MinMaxWeight.WIN
+        best_move = move_list[0]
 
         # Iterate through the moves and recursively find the best
         for move in move_list:

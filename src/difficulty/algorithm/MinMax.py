@@ -35,19 +35,21 @@ class MinMax(Opponent):
         """
 
         # Check if it is the turn of the computer
-        if self.game.whose_turn() is not self.player:
+        if self.game.whose_turn() is not self.player or self.game.is_over():
             return
 
         start_time = time.time()
 
         score, move = self._start_min_max()
 
-        print(f"Time: {time.time() - start_time}")
-        print(f"Score: {score}")
         print("")
+        print(f"Score: {score}")
         print(f"Move: {move}")
-
-        self.game.move(move)
+        print(f"Time: {time.time() - start_time}")
+        try:
+            self.game.move(move)
+        except:
+            self.make_next_move()
 
     def _start_min_max(self) -> Tuple[int, Tuple[int, int]]:
 

@@ -1,2 +1,3 @@
 # Checkers game engine
 imparaai-checkers
+pytest==5.4.1
