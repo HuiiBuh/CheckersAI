@@ -1,8 +1,9 @@
 import copy
 import random
-from sys import maxsize
+from typing import Optional
 
 from checkers.game import Game
+from sys import maxsize
 
 from game.algorithm.Opponent import Opponent
 
@@ -13,11 +14,11 @@ class MonteCarlo(Opponent):
         self.move_count: int = move_count
         super().__init__(player)
 
-    def make_next_move(self):
+    def calculate_next_move(self) -> Optional[dict]:
 
         # Check if it is the turn of the computer
         if self.game.whose_turn() is not self.player or self.game.is_over():
-            return
+            return None
 
         # Get the possible moves
         move_list: list = self.game.board.get_possible_moves()
@@ -29,13 +30,13 @@ class MonteCarlo(Opponent):
             move_score_list.append(move_score)
 
         best_move_score = {"move": None, "score": -maxsize}
+
         for move_score in move_score_list:
 
             if move_score["score"] > best_move_score["score"]:
                 best_move_score = move_score
 
-        self.game.move(best_move_score["move"])
-        print(best_move_score)
+        return best_move_score
 
     def _tree_search(self, old_move: list, game: Game, move_count: int) -> dict:
 

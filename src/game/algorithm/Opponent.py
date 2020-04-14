@@ -1,9 +1,16 @@
 from abc import ABC, abstractmethod
-from time import sleep
+from typing import Optional, List
 
 from checkers.game import Game
+from time import sleep
 
 from game.Colors import COLOUR
+
+
+class CheckersPiece:
+    position: int
+    player: int
+    king: bool
 
 
 class Opponent(ABC):
@@ -56,7 +63,7 @@ class Opponent(ABC):
                     except Exception as e:
                         print(COLOUR.RED + str(e) + COLOUR.END + "\n\n")
             else:
-                self.make_next_move()
+                self.calculate_next_move()
 
         winner = self.game.get_winner()
         print(COLOUR.GREEN + f"The winner is player {winner}." + COLOUR.END)
@@ -66,27 +73,16 @@ class Opponent(ABC):
         Move a piece
         :param start_position: The starting coordinates of the piece
         :param end_position: The end coordinates of the piece
-        :return: None
         """
 
-        # Check if it is the turn of the user
-        if self.game.whose_turn() is self.player:
-            raise PermissionError("It is not your turn")
+        self.game.move([start_position, end_position])
 
-        # Create the move tuple
-        move = [start_position, end_position]
-
-        # Check if the move is possible
-        if move not in self.game.get_possible_moves():
-            raise PermissionError(f"The move you tried is not possible. {move}")
-
-        # Do the move
-        self.game.move(move)
+    def get_move_by_pieces(self, pieces: List[CheckersPiece]):
+        raise NotImplementedError()
 
     @abstractmethod
-    def make_next_move(self):
+    def calculate_next_move(self) -> Optional[dict]:
         """
         Has to be overwritten
-        :return: None
+        :return: The dict with the move and the score of the move
         """
-        raise NotImplementedError("This method has to be overwritten")

@@ -3,8 +3,9 @@ import random
 from multiprocessing import Queue
 from multiprocessing.context import Process
 from multiprocessing.process import BaseProcess
+from typing import List, Optional
+
 from sys import maxsize
-from typing import List
 
 from game.algorithm.MinMax import MinMaxWeight
 from game.algorithm.MonteCarlo import MonteCarlo
@@ -12,7 +13,7 @@ from game.algorithm.MonteCarlo import MonteCarlo
 
 class MonteCarloMP(MonteCarlo):
 
-    def make_next_move(self):
+    def calculate_next_move(self) -> Optional[dict]:
 
         # Check if it is the turn of the computer
         if self.game.whose_turn() is not self.player or self.game.is_over():
@@ -67,8 +68,7 @@ class MonteCarloMP(MonteCarlo):
         communication_queue.close()
         communication_queue.join_thread()
 
-        print(result_best_move)
-        self.game.move(result_best_move['move'])
+        return result_best_move
 
     def _tree_search(self, move_list, game, move_count, queue: Queue = None):
 

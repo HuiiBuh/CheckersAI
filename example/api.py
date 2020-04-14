@@ -1,7 +1,7 @@
 import asyncio
 from typing import List
 
-from aiohttp import ClientSession
+from aiohttp import ClientSession, ClientTimeout
 
 headers: dict = {
     'X-authentication-token': '123456789'
@@ -33,27 +33,18 @@ difficulty = 4
 
 
 async def make_requests():
-    async with ClientSession() as session:
+    timeout = ClientTimeout(total=(60 * 9))
+
+    async with ClientSession(timeout=timeout) as session:
         # new game
-        async with session.put(f'http://0.0.0.0:8000/game?difficulty={difficulty}&first=true', headers=headers) as resp:
+        async with session.put(f'http://0.0.0.0:8000/game?difficulty={difficulty}&player_first=true',
+                               headers=headers) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 200
 
         # get board
         async with session.get("http://0.0.0.0:8000/game", headers=headers) as resp:
-            j = await resp.json()
-            assert isinstance(j, dict)
-            assert resp.status == 200
-
-        # delete game
-        async with session.delete("http://0.0.0.0:8000/game", headers=headers) as resp:
-            j = await resp.json()
-            assert not j
-            assert resp.status == 200
-
-        # new game
-        async with session.put(f'http://0.0.0.0:8000/game?difficulty={difficulty}&first=true', headers=headers) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 200
@@ -70,10 +61,28 @@ async def make_requests():
             assert isinstance(j, dict)
             assert resp.status == 200
 
+        # delete game
+        async with session.delete("http://0.0.0.0:8000/game", headers=headers) as resp:
+            j = await resp.json()
+            assert not j
+            assert resp.status == 200
+
+        # new game
+        async with session.put(f'http://0.0.0.0:8000/game?difficulty={difficulty}', headers=headers) as resp:
+            j = await resp.json()
+            assert isinstance(j, dict)
+            assert resp.status == 200
+
         # send pieces list
         async with session.post("http://0.0.0.0:8000/game/pieces", headers=headers, json=pieces) as resp:
             j = await resp.json()
             assert isinstance(j, List)
+            assert resp.status == 200
+
+        # calculate next move
+        async with session.get("http://0.0.0.0:8000/game/move", headers=headers) as resp:
+            j = await resp.json()
+            assert isinstance(j, dict)
             assert resp.status == 200
 
 
