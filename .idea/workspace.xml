@@ -2,12 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f56248-9532-428a-86b5-3c8efacc5b85" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Checkers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Checkers.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/MinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/difficulty/algorithm/MinMax.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/MinMaxMP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/difficulty/algorithm/MinMaxMP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/MonteCarlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/difficulty/algorithm/MonteCarlo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Colors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Colors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/MinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MinMax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/MinMaxMP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MinMaxMP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/MonteCarlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MonteCarlo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/MonteCarloMP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MonteCarloMP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/Opponent.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/Opponent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/Random.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/Random.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/algorithm/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/network/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/network/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/network/NeuronalNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/network/NeuronalNetwork.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/network/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/network/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/difficulty/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/test_gameplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_gameplay.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,44 +65,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/game" />
+      <recent name="$PROJECT_DIR$/example" />
       <recent name="$PROJECT_DIR$/src/difficulty" />
       <recent name="$PROJECT_DIR$/src/difficulty/network" />
       <recent name="$PROJECT_DIR$/src/difficulty/algorithm" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_positions">
-    <configuration name="Game" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Checkers" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python3.6" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/difficulty/network" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <EXTENSION ID="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
-        </ENTRIES>
-      </EXTENSION>
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/difficulty/network/Game.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.__manual_start">
     <configuration name="MonteCarlo" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Checkers" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -114,7 +95,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NeuronalNetwork" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="__manual_start" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Checkers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -122,12 +103,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/difficulty" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/api" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/difficulty/network/NeuronalNetwork.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/api/__manual_start.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -136,7 +117,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="_manual_start" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Checkers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -144,12 +125,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/api" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/api/_manual_start.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="entry_point" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Checkers" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/api/entry_point.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -217,20 +220,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Game" />
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.MonteCarlo" />
-      <item itemvalue="Python.NeuronalNetwork" />
       <item itemvalue="Python.test_positions" />
       <item itemvalue="Python tests.pytest in src" />
+      <item itemvalue="Python.entry_point" />
+      <item itemvalue="Python._manual_start" />
+      <item itemvalue="Python.__manual_start" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.__manual_start" />
+        <item itemvalue="Python._manual_start" />
+        <item itemvalue="Python.entry_point" />
         <item itemvalue="Python.test_positions" />
         <item itemvalue="Python.MonteCarlo" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.NeuronalNetwork" />
-        <item itemvalue="Python.Game" />
       </list>
     </recent_temporary>
   </component>
@@ -262,7 +265,7 @@
       <workItem from="1582648477339" duration="10150000" />
       <workItem from="1582817477474" duration="7642000" />
       <workItem from="1586791335431" duration="2681000" />
-      <workItem from="1586847584863" duration="6030000" />
+      <workItem from="1586847584863" duration="15116000" />
     </task>
     <servers />
   </component>
@@ -287,58 +290,62 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586851397944" />
-    <state x="691" y="333" width="574" height="385" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582819398342">
+    <state x="691" y="333" width="574" height="385" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586858949850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="691" y="333" width="574" height="385" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1582819398342" />
+    <state x="691" y="333" width="574" height="385" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1586858949850" />
     <state x="695" y="314" width="525" height="423" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586851385040">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="695" y="314" width="525" height="423" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586851385040" />
+    <state x="696" y="277" width="524" height="497" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586855210171">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="696" y="277" width="524" height="497" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586855210171" />
     <state width="1699" height="466" key="DebuggerActiveHint" timestamp="1586853434926">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1699" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1586853434926" />
-    <state x="763" y="355" width="424" height="481" key="FileChooserDialogImpl" timestamp="1586851393054">
+    <state x="763" y="355" width="424" height="481" key="FileChooserDialogImpl" timestamp="1586862489950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="763" y="355" width="424" height="481" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586851393054" />
-    <state width="1878" height="353" key="GridCell.Tab.0.bottom" timestamp="1586853583158">
+    <state x="763" y="355" width="424" height="481" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586862489950" />
+    <state width="1878" height="477" key="GridCell.Tab.0.bottom" timestamp="1586863067672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="353" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586853583158" />
-    <state width="1878" height="353" key="GridCell.Tab.0.center" timestamp="1586853583158">
+    <state width="1878" height="477" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586863067672" />
+    <state width="1878" height="477" key="GridCell.Tab.0.center" timestamp="1586863067672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="353" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586853583158" />
-    <state width="1878" height="353" key="GridCell.Tab.0.left" timestamp="1586853583158">
+    <state width="1878" height="477" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586863067672" />
+    <state width="1878" height="477" key="GridCell.Tab.0.left" timestamp="1586863067672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="353" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586853583158" />
-    <state width="1878" height="353" key="GridCell.Tab.0.right" timestamp="1586853583158">
+    <state width="1878" height="477" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586863067672" />
+    <state width="1878" height="477" key="GridCell.Tab.0.right" timestamp="1586863067672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="353" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586853583158" />
-    <state width="1878" height="455" key="GridCell.Tab.1.bottom" timestamp="1586853454006">
+    <state width="1878" height="477" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586863067672" />
+    <state width="1878" height="477" key="GridCell.Tab.1.bottom" timestamp="1586863067672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="455" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586853454006" />
-    <state width="1878" height="455" key="GridCell.Tab.1.center" timestamp="1586853454006">
+    <state width="1878" height="477" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586863067672" />
+    <state width="1878" height="477" key="GridCell.Tab.1.center" timestamp="1586863067671">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="455" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586853454006" />
-    <state width="1878" height="455" key="GridCell.Tab.1.left" timestamp="1586853454006">
+    <state width="1878" height="477" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586863067671" />
+    <state width="1878" height="477" key="GridCell.Tab.1.left" timestamp="1586863067671">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="455" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586853454006" />
-    <state width="1878" height="455" key="GridCell.Tab.1.right" timestamp="1586853454006">
+    <state width="1878" height="477" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586863067671" />
+    <state width="1878" height="477" key="GridCell.Tab.1.right" timestamp="1586863067672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="455" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586853454006" />
-    <state x="467" y="162" width="1024" height="842" key="SettingsEditor" timestamp="1586851516054">
+    <state width="1878" height="477" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586863067672" />
+    <state x="467" y="162" width="1024" height="842" key="SettingsEditor" timestamp="1586862495188">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="467" y="162" width="1024" height="842" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586851516054" />
+    <state x="467" y="162" width="1024" height="842" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586862495188" />
     <state x="645" y="357" key="com.intellij.ide.util.TipDialog" timestamp="1586847598962">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -347,32 +354,24 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="635" y="261" width="649" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586850200299" />
-    <state x="624" y="167" width="672" height="676" key="search.everywhere.popup" timestamp="1586851730041">
+    <state x="624" y="167" width="672" height="676" key="search.everywhere.popup" timestamp="1586862392928">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="167" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586851730041" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/difficulty/algorithm/MinMax.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="624" y="167" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586862392928" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Checkers$MonteCarlo.coverage" NAME="MonteCarlo Coverage Results" MODIFIED="1582827571616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/difficulty/algorithm" />
     <SUITE FILE_PATH="coverage/Checkers$Unittests_in_Positions_py.coverage" NAME="Unittests in Positions.py Coverage Results" MODIFIED="1572542178682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/Checkers$Game.coverage" NAME="Game Coverage Results" MODIFIED="1582821633942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/difficulty/network" />
     <SUITE FILE_PATH="coverage/Checkers$Unittests_for_Positions_TestPosition_test_position_to_coordinates.coverage" NAME="Unittests for Positions.TestPosition.test_position_to_coordinates Coverage Results" MODIFIED="1572540251467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/Checkers$main.coverage" NAME="main Coverage Results" MODIFIED="1582824556942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/CheckersAI$test_positions.coverage" NAME="test_positions Coverage Results" MODIFIED="1586853583150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
+    <SUITE FILE_PATH="coverage/CheckersAI$test_positions.coverage" NAME="test_positions Coverage Results" MODIFIED="1586853675364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
+    <SUITE FILE_PATH="coverage/CheckersAI$__manual_start.coverage" NAME="__manual_start Coverage Results" MODIFIED="1586863062814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api" />
     <SUITE FILE_PATH="coverage/Checkers$NeuronalNetwork.coverage" NAME="NeuronalNetwork Coverage Results" MODIFIED="1582823826445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/difficulty" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_in_src.coverage" NAME="pytest in src Coverage Results" MODIFIED="1586851450572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Checkers$test_positions.coverage" NAME="test_positions Coverage Results" MODIFIED="1582826628174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$MonteCarlo.coverage" NAME="MonteCarlo Coverage Results" MODIFIED="1582831635712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/difficulty/algorithm" />
+    <SUITE FILE_PATH="coverage/Checkers$MonteCarlo.coverage" NAME="MonteCarlo Coverage Results" MODIFIED="1582827571616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/difficulty/algorithm" />
+    <SUITE FILE_PATH="coverage/CheckersAI$entry_point.coverage" NAME="entry_point Coverage Results" MODIFIED="1586857368487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api" />
+    <SUITE FILE_PATH="coverage/CheckersAI$_manual_start.coverage" NAME="_manual_start Coverage Results" MODIFIED="1586858699309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api" />
+    <SUITE FILE_PATH="coverage/Checkers$test_positions.coverage" NAME="test_positions Coverage Results" MODIFIED="1582826628174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
   </component>
 </project>

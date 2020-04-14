@@ -1,5 +1,5 @@
-from difficulty.setup import select_difficulty, select_order
-from .difficulty import Random, MinMax
+from game.setup import select_difficulty, select_order
+from game import Random, MinMax
 
 difficulty: int = select_difficulty()
 order: int = select_order()

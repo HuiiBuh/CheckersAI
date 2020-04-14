@@ -1,6 +1,6 @@
-from difficulty import MinMax, MinMaxMP, Random
-from difficulty.algorithm.MonteCarlo import MonteCarlo
-from difficulty.algorithm.MonteCarloMP import MonteCarloMP
+from game import MinMax, MinMaxMP, Random
+from game.algorithm.MonteCarlo import MonteCarlo
+from game.algorithm.MonteCarloMP import MonteCarloMP
 
 
 def test_random_game():

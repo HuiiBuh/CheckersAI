@@ -1,4 +1,4 @@
-from Colors import COLOUR
+from game.Colors import COLOUR
 
 
 def select_order(error: str = "") -> int:

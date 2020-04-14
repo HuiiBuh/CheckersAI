@@ -6,13 +6,17 @@ from multiprocessing.process import BaseProcess
 from sys import maxsize
 from typing import List
 
-from difficulty.algorithm.MinMax import MinMaxWeight
-from difficulty.algorithm.MonteCarlo import MonteCarlo
+from game.algorithm.MinMax import MinMaxWeight
+from game.algorithm.MonteCarlo import MonteCarlo
 
 
 class MonteCarloMP(MonteCarlo):
 
     def make_next_move(self):
+
+        # Check if it is the turn of the computer
+        if self.game.whose_turn() is not self.player or self.game.is_over():
+            return
 
         # Get the cpu cores
         cpu_cores: int = multiprocessing.cpu_count()

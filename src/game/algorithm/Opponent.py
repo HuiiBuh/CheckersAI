@@ -3,7 +3,7 @@ from time import sleep
 
 from checkers.game import Game
 
-from Colors import COLOUR
+from game.Colors import COLOUR
 
 
 class Opponent(ABC):

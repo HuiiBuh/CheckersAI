@@ -1,6 +1,6 @@
 import random
 
-from difficulty.algorithm.Opponent import Opponent
+from game.algorithm.Opponent import Opponent
 
 
 class Random(Opponent):

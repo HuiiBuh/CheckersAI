@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from difficulty.network.Game import NCheckersGame
+from game.network.Game import NCheckersGame
 
 
 class Checkers(nn.Module):

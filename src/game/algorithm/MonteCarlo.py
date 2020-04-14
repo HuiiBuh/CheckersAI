@@ -4,7 +4,7 @@ from sys import maxsize
 
 from checkers.game import Game
 
-from difficulty.algorithm.Opponent import Opponent
+from game.algorithm.Opponent import Opponent
 
 
 class MonteCarlo(Opponent):
@@ -14,6 +14,10 @@ class MonteCarlo(Opponent):
         super().__init__(player)
 
     def make_next_move(self):
+
+        # Check if it is the turn of the computer
+        if self.game.whose_turn() is not self.player or self.game.is_over():
+            return
 
         # Get the possible moves
         move_list: list = self.game.board.get_possible_moves()
