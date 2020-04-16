@@ -1,7 +1,7 @@
 from typing import Optional, List, Tuple
 
 from checkers.game import Game
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, status
 
 from api.endpoints.models import Move, CheckersPiece
 from game import MinMaxMP
@@ -11,7 +11,7 @@ game: Optional[MinMaxMP] = None
 router = APIRouter()
 
 
-@router.put("/game")
+@router.put("/game", status_code=status.HTTP_201_CREATED)
 async def new_game(difficulty: int, player_first: bool = False):
     """
     Create a new game
@@ -31,7 +31,7 @@ async def get_board():
     """Get the current game board"""
 
     if not game:
-        raise HTTPException(404, {'error': 'You have to create a game first'})
+        raise HTTPException(404, 'You have to create a game first')
 
     return get_game_state(game.game)
 
@@ -50,7 +50,10 @@ async def update_board(piece_list: List[CheckersPiece]):
     :param piece_list: A list of pieces which represent the game
     """
 
-    move_list: List[Tuple[int, int]] = game.get_move_by_pieces(piece_list)
+    try:
+        move_list: List[Tuple[int, int]] = game.get_move_by_pieces(piece_list)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
 
     for move in move_list:
         game.move(*move)
@@ -63,22 +66,20 @@ async def calculate_move():
     """Calculate the next move"""
 
     if not game:
-        raise HTTPException(404, {'error': 'You have to create a game first'})
+        raise HTTPException(404, 'You have to create a game first')
 
     proposed_move = game.calculate_next_move()
 
     if not proposed_move:
-        raise HTTPException(400, {'error': 'It is not the turn of the computer'})
+        raise HTTPException(400, 'It is not the turn of the computer')
 
-    move = {
+    return {
         'move': {
             'origin': proposed_move['move'][0],
             'target': proposed_move['move'][1]
         },
         'score': proposed_move['score']
     }
-
-    return move
 
 
 @router.post("/game/move")
@@ -89,12 +90,12 @@ async def make_move(move: Move):
     """
 
     if not game:
-        raise HTTPException(404, {'error': 'You have to create a game first'})
+        raise HTTPException(404, 'You have to create a game first')
 
     try:
         game.game.move([move.origin, move.target])
     except ValueError:
-        raise HTTPException(418, {'error': 'The move you provided is not allowed'})
+        raise HTTPException(418, 'The move you provided is not allowed')
 
     return get_game_state(game.game)
 
