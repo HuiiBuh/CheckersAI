@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="05f56248-9532-428a-86b5-3c8efacc5b85" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/endpoints/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/endpoints/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/algorithm/MinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MinMax.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/algorithm/Opponent.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/Opponent.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -286,7 +282,7 @@
       <workItem from="1586870935907" duration="7159000" />
       <workItem from="1586881124439" duration="60000" />
       <workItem from="1586884338731" duration="3235000" />
-      <workItem from="1587039404847" duration="7185000" />
+      <workItem from="1587039404847" duration="9011000" />
     </task>
     <servers />
   </component>

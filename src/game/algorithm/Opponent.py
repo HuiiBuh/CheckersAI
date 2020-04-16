@@ -130,9 +130,9 @@ class Opponent(ABC):
     def get_changed_positions(self, active_pieces: List[Piece], piece_hash_map: Dict[int, CheckersPiece]) -> List[int]:
         """
         Get the positions where something has changed
-
         :param active_pieces: The currently active pieces in the game
-        :param piece_hash_map: The new game state as position piece hash map
+        :param piece_hash_map: The new game's pieces as position piece hash map
+
         :return: The positions which changed for the current player
         """
 
@@ -149,6 +149,7 @@ class Opponent(ABC):
         :param piece: A piece which should have an equivalent
         :param piece_dict: A dict with position - piece
         :param player: Optional check if the piece belongs to a specific player
+
         :return: A bool value if the piece has an equivalent
         """
 
@@ -164,7 +165,9 @@ class Opponent(ABC):
         """
         Build a hash map out of the pieces
         :param pieces_list: The pieces the hash map will be generated with
+
         :raises: ValueError: If two pieces are at the same position
+
         :return: The generated hash map
         """
 
@@ -181,7 +184,7 @@ class Opponent(ABC):
             -> List[Tuple[int, int]]:
         """
         Try to reconstruct the game by taking a look at the changed positions
-        :param piece_hash_map:
+        :param piece_hash_map: The new game's pieces as position piece hash map
         :param changed_position: A list with one entry with the changed position for the current player
 
         :raises ValueError: If more than one piece moved for the current player
@@ -203,16 +206,18 @@ class Opponent(ABC):
         changed_position: int = changed_position[0]
         move_list: List[Tuple[int, int]] = self.game.get_possible_moves()
 
-        # TODO check if changed position is in move list else raise ValueError
-        # TODO update the move list with only the relevant moves
+        updated_move_list: List[Tuple[int, int]] = []
+        for move in move_list:
+            if move[0] == changed_position:
+                updated_move_list.append(move)
 
         # Get the move and the resulting game
         game_move_list: List[Tuple[List[Tuple[int, int]], Game]] = []
-        for move in move_list:
+        for move in updated_move_list:
             game_move_list.append(*self.trace_move(self.game, move, player))
 
         for game_move in game_move_list:
-            move_list: List[Tuple[int, int]] = game_move[0]
+            possible_move_list: List[Tuple[int, int]] = game_move[0]
             game: Game = game_move[1]
 
             # Get the active pieces of the game
@@ -220,12 +225,30 @@ class Opponent(ABC):
 
             # Check if anything is different (which should not be the case if the right moves where made)
             if not self.get_changed_positions(active_pieces, piece_hash_map):
-                return move_list
+                return possible_move_list
 
         raise ValueError('The move you tried is not possible')
 
     @staticmethod
     def trace_move(game: Game, move, player: int) -> List[Tuple[List[Tuple[int, int]], Game]]:
-        game: Game = deepcopy(game)
+        """
+        Trace the moves to the end
 
-        # TODO trace the shit our of this
+        :param game: The current game state
+        :param move: The move which should be made
+        :param player: The player which should make the move
+        :return: A list of possible moves with the finished game state
+        """
+
+        return_list: List[Tuple[List[Tuple[int, int]], Game]] = []
+
+        game: Game = deepcopy(game)
+        game.move(move)
+
+        # Check if the move of the player has ended
+        if game.whose_turn() != player:
+            return_list.append(([move], game))
+        else:
+            # TODO multi hop moves with different outcomes
+            pass
+        return return_list
