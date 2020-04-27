@@ -1,6 +1,5 @@
 # Checkers game engine
-imparaai-checkers
-pytest==5.4.1
+imparaai-checkers==1.4.2
 fastapi==0.54.1
 uvicorn==0.11.3
-aiohttp
+

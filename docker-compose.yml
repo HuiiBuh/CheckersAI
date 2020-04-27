@@ -1,0 +1,9 @@
+version: '3.0'
+services:
+  checkers-ai:
+    container_name: checkers-api
+    network_mode: host
+    ports:
+      - 1234:1234
+    build: .
+

@@ -114,7 +114,7 @@ class MinMax(Opponent):
         human_score = 0
 
         # For every piece in the ame
-        for piece in self.get_active_pieces(game):
+        for piece in self._get_active_pieces(game):
 
             # Get the owner of the piece
             if piece.player is self.player:

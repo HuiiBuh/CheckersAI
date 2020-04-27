@@ -1,7 +1,8 @@
-from typing import Optional, List, Tuple
+from typing import Optional, List, Tuple, Dict, Any
 
+import time
 from checkers.game import Game
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Response
 
 from api.endpoints.models import Move, CheckersPiece
 from game import MinMaxMP
@@ -9,6 +10,12 @@ from game import MinMaxMP
 game: Optional[MinMaxMP] = None
 
 router = APIRouter()
+
+
+@router.get('/ping')
+async def ping_pong(response: Response):
+    response.headers["X-Send-Time"] = str(time.time())
+    return {}
 
 
 @router.put("/game", status_code=status.HTTP_201_CREATED)
@@ -100,11 +107,12 @@ async def make_move(move: Move):
     return get_game_state(game.game)
 
 
-def get_game_state(internal_game: Game) -> dict:
+def get_game_state(internal_game: Game) -> Dict[str, Any]:
     """Get the game state as dict"""
 
     # TODO something more meaningful for this please
     board: dict = internal_game.board.position_layout
+
     player_turn: int = internal_game.whose_turn()
     winner: Optional[int] = internal_game.get_winner()
     is_over: bool = internal_game.is_over()
