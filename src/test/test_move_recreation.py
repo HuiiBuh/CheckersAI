@@ -1,115 +1,50 @@
-import multiprocessing
-from multiprocessing import Process
 from typing import List, Tuple
 
 import pytest
-from aiohttp import ClientSession
-from time import sleep
 
 from api.endpoints.models import CheckersPiece
-from api.manual_start import manual_start_app
-from conftest import TestData
 from game import MinMax
 
 
-class TestApi:
-    api_instance: Process = None
+def test_one_move_recreation(valid_one_move_pieces):
+    min_max = MinMax(1, 1)
 
-    base_url = 'http://0.0.0.0:1234/'
+    move: List[Tuple[int, int]] = min_max.get_move_by_pieces(valid_one_move_pieces)
+    assert move == [[9, 14]]
 
-    @classmethod
-    def setup_class(cls):
-        mp_context: multiprocessing = multiprocessing.get_context('spawn')
 
-        kwargs = {'location': 'api.main:app', 'reload': False}
-        cls.api_instance = mp_context.Process(target=manual_start_app, kwargs=kwargs)
-        cls.api_instance.start()
-        sleep(5)
+def test_invalid_one_move_recreation(valid_one_move_pieces):
+    valid_one_move_pieces[0].king = True
 
-    def test_move_recreation(self, valid_move_pieces: List[dict]):
-        min_max = MinMax(1, 1)
+    min_max = MinMax(1, 1)
 
-        one_move_list: List[CheckersPiece] = []
-        for piece in valid_move_pieces:
-            one_move_list.append(CheckersPiece(**piece))
+    with pytest.raises(ValueError):
+        min_max.get_move_by_pieces(valid_one_move_pieces)
 
-        move: List[Tuple[int, int]] = min_max.get_move_by_pieces(one_move_list)
-        assert move is not None
 
-    @pytest.mark.asyncio
-    async def test_create_board(self, timeout):
-        async with ClientSession(timeout=timeout) as session:
-            # new game
-            url = f'{self.base_url}game?difficulty={TestData.difficulty}&player_first=true'
-            async with session.put(url, headers=TestData.headers) as resp:
-                j = await resp.json()
-                assert isinstance(j, dict)
-                assert resp.status == 201
+def test_load_game():
+    min_max = MinMax(1, 1)
 
-                # get board
-            async with session.get(f"{self.base_url}game", headers=TestData.headers) as resp:
-                j = await resp.json()
-                assert isinstance(j, dict)
-                assert resp.status == 200
+    piece_1 = CheckersPiece(position=18, player=1, king=True)
+    piece_2 = CheckersPiece(position=22, player=2, king=True)
 
-    @pytest.mark.asyncio
-    async def test_invalid_move(self, timeout):
-        async with ClientSession(timeout=timeout) as session:
-            # new game
-            url = f'{self.base_url}game?difficulty={TestData.difficulty}&player_first=true'
-            async with session.put(url, headers=TestData.headers) as _:
-                pass
+    min_max.load_game([piece_1, piece_2])
 
-                # make a invalid move
-            async with session.post(f"{self.base_url}game/move", headers=TestData.headers,
-                                    json=TestData.invalid_move) as resp:
-                j = await resp.json()
-                assert isinstance(j, dict)
-                assert resp.status == 418
+    moves = min_max.game.get_possible_moves()[0]
+    min_max.move(*moves)
 
-    @pytest.mark.asyncio
-    async def test_valid_move(self, timeout):
-        async with ClientSession(timeout=timeout) as session:
-            # new game
-            url = f'{self.base_url}game?difficulty={TestData.difficulty}&player_first=true'
-            async with session.put(url, headers=TestData.headers) as _:
-                pass
+    assert min_max.game.is_over()
 
-                # make a valid move
-            async with session.post(f"{self.base_url}game/move", headers=TestData.headers,
-                                    json=TestData.valid_move) as resp:
-                j = await resp.json()
-                assert isinstance(j, dict)
-                assert resp.status == 200
 
-    @pytest.mark.asyncio
-    async def test_delete_game(self, timeout):
-        async with ClientSession(timeout=timeout) as session:
-            # new game
-            url = f'{self.base_url}game?difficulty={TestData.difficulty}&player_first=true'
-            async with session.put(url, headers=TestData.headers) as _:
-                pass
+def test_multi_move_recreation(valid_multi_move_pieces):
+    min_max = MinMax(1, 1)
 
-                # delete game
-            async with session.delete(f"{self.base_url}game", headers=TestData.headers) as resp:
-                j = await resp.json()
-                assert not j
-                assert resp.status == 200
+    piece_1 = CheckersPiece(position=29, player=1, king=True)
+    piece_2 = CheckersPiece(position=25, player=2, king=True)
+    piece_3 = CheckersPiece(position=18, player=2, king=True)
+    piece_4 = CheckersPiece(position=11, player=2, king=True)
 
-    @pytest.mark.asyncio
-    async def test_calc_next_move(self, timeout):
-        async with ClientSession(timeout=timeout) as session:
-            # new game
-            url = f'{self.base_url}game?difficulty={TestData.difficulty}&player_first=false'
-            async with session.put(url, headers=TestData.headers) as _:
-                pass
+    min_max.load_game([piece_1, piece_2, piece_3, piece_4])
 
-                # calculate next move
-            async with session.get(f"{self.base_url}game/move", headers=TestData.headers) as resp:
-                j = await resp.json()
-                assert isinstance(j, dict)
-                assert resp.status == 200
-
-    @classmethod
-    def teardown_class(cls):
-        cls.api_instance.terminate()
+    move: List[Tuple[int, int]] = min_max.get_move_by_pieces(valid_multi_move_pieces)
+    assert move == [[29, 22], [22, 15], [15, 8]]

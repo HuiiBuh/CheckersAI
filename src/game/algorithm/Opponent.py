@@ -9,7 +9,11 @@ from time import sleep
 from game.Colors import COLOUR
 
 
-class CheckersPiece:
+class CheckersPiece(ABC):
+    """
+    Only intended for type checking
+    """
+
     position: int
     player: int
     king: bool
@@ -101,12 +105,38 @@ class Opponent(ABC):
         :return: The dict with the move and the score of the move
         """
 
+    def load_game(self, piece_list: List[CheckersPiece]) -> None:
+        """
+        Load a checkers board by pieces. No validity checking will be made and the history of the game will be broken.
+
+        :param piece_list: A list of pieces which represent the game
+        """
+
+        if len(piece_list) > 16:
+            raise ValueError('You cannot pass more than 16 pieces')
+
+        board_pieces: List[Piece] = self.game.board.pieces
+
+        for piece in board_pieces:
+            piece.capture()
+            self.game.board.searcher.build(self.game.board)
+
+        piece_index = 0
+        for new_piece in piece_list:
+            board_pieces[piece_index].king = new_piece.king
+            board_pieces[piece_index].player = new_piece.player
+            board_pieces[piece_index].position = new_piece.position
+            board_pieces[piece_index].captured = False
+            piece_index += 1
+
+        self.game.board.searcher.build(self.game.board)
+
     def get_move_by_pieces(self, transmitted_piece_list: List[CheckersPiece]) -> List[Tuple[int, int]]:
         """
         Get all the pieces on a board and reconstruct the moves which have been made.
         :param transmitted_piece_list: A list of pieces
 
-        :raises: ValueError: If two pieces are at the same position
+        :raises ValueError: If two pieces are at the same position
         :raises ValueError: If more than one piece moved for the current player
         :raises ValueError: If no piece moved for the current player
         :raises ValueError: The move was not possible
@@ -121,11 +151,22 @@ class Opponent(ABC):
         piece_hash_map: Dict[int, CheckersPiece] = self._position_piece_hash_map(transmitted_piece_list)
 
         # A list of positions which have changed
-        changed_positions: List[int] = self._get_changed_positions(active_pieces, piece_hash_map)
+        changed_positions: List[int] = self._get_changed_position_for_player(active_pieces, piece_hash_map,
+                                                                             self.game.whose_turn())
 
         # Try to reconstruct the game and return the move which made it possible
         moves: List[Tuple[int, int]] = self._reconstruct_game(changed_positions, piece_hash_map)
         return moves
+
+    def _get_changed_position_for_player(self, active_pieces: List[Piece], piece_hash_map: Dict[int, CheckersPiece],
+                                         player: int) -> List[int]:
+
+        changed_positions: List[int] = []
+        for piece in active_pieces:
+            if not self._has_equivalent(piece, piece_hash_map):
+                if piece.player == player:
+                    changed_positions.append(piece.position)
+        return changed_positions
 
     def _get_changed_positions(self, active_pieces: List[Piece], piece_hash_map: Dict[int, CheckersPiece]) -> List[int]:
         """
@@ -164,7 +205,7 @@ class Opponent(ABC):
         Build a hash map out of the pieces
         :param pieces_list: The pieces the hash map will be generated with
 
-        :raises: ValueError: If two pieces are at the same position
+        :raises ValueError: If two pieces are at the same position
 
         :return: The generated hash map
         """
@@ -192,8 +233,6 @@ class Opponent(ABC):
         :return: The moves which where made
         """
 
-        player: int = self.game.whose_turn()
-
         if len(changed_position) > 1:
             raise ValueError(
                 'More than one position has changed for the player which has to make a move. This is not possible')
@@ -212,7 +251,7 @@ class Opponent(ABC):
 
         # Get the move and the resulting game
         move_game_list: List[Tuple[List[Tuple[int, int]], Game]] = self._trace_move(self.game, updated_move_list,
-                                                                                    player)
+                                                                                    self.game.whose_turn())
 
         for move_game in move_game_list:
             # Get the active pieces of the game
@@ -229,7 +268,7 @@ class Opponent(ABC):
         """
         Trace the moves to the end
 
-        :param game: The current game state
+        :param original_game: The original game
         :param move_list: A list of possible moves
         :param player: The player which should make the move
         :return: A list of possible moves with the finished game state
