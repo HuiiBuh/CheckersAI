@@ -2,6 +2,8 @@ version: '3.0'
 services:
   checkers-ai:
     container_name: checkers-api
+    environment:
+      - auth_token=a_random_token_please
     network_mode: host
     ports:
       - 1234:1234
