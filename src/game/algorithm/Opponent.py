@@ -112,7 +112,7 @@ class Opponent(ABC):
         :param piece_list: A list of pieces which represent the game
         """
 
-        if len(piece_list) > 16:
+        if len(piece_list) > 24:
             raise ValueError('You cannot pass more than 16 pieces')
 
         board_pieces: List[Piece] = self.game.board.pieces
@@ -203,7 +203,7 @@ class Opponent(ABC):
                 position = last_move[0]
 
             if position in piece_hash_map:
-                if piece.king is not piece_hash_map[position]:
+                if piece.king is not piece_hash_map[position].king and piece.king:
                     return_list.append(piece.position)
 
         return return_list

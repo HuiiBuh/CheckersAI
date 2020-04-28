@@ -66,7 +66,7 @@ async def delete_game(game_key: str):
     del game_holder[game_key]
 
 
-@router.post('/game/{game_key}/pieces')
+@router.post('/game/{game_key}/pieces-to-move')
 async def update_board(game_key: str, piece_list: List[CheckersPiece]):
     """
     Update the game with a list of pieces. After this a try to reconstruct the move is made
@@ -84,35 +84,14 @@ async def update_board(game_key: str, piece_list: List[CheckersPiece]):
     except ValueError as e:
         raise HTTPException(400, str(e))
 
-    # Do every move except the last one
-    for number in range(len(move_list) - 1):
-        game_instance.move(*move_list[number])
-
-    # Copy the game and make the last move
-    old_game = deepcopy(game_instance.game)
-    game_instance.move(*move_list[-1])
-
-    player = game_instance.game.whose_turn()
-
-    # Get the removed pieces
-    removed_pieces = game_instance.get_removed_pieces(old_game, game_instance.game, player)
-
-    # Get new kings
-    new_kings = game_instance.get_new_kings(old_game, game_instance.game, 1 - player, move_list[-1])
-
     return_move_list = []
     for move in move_list:
-        temp = {
+        return_move_list.append({
             'origin': move[0],
             'target': move[1]
-        }
-        return_move_list.append(temp)
+        })
 
-    return {
-        'move_list': return_move_list,
-        'removed_pieces': removed_pieces,
-        'new_kings': new_kings
-    }
+    return {'move_list': return_move_list}
 
 
 @router.get('/game/{game_key}/move')
@@ -148,6 +127,10 @@ async def make_move(game_key: str, move: Move):
 
     game_instance = game_holder[game_key]
 
+    # Copy the game
+    old_game = deepcopy(game_instance.game)
+    player = game_instance.game.whose_turn()
+
     if not game_instance:
         raise HTTPException(404, 'Your game key is invalid.')
 
@@ -156,7 +139,16 @@ async def make_move(game_key: str, move: Move):
     except ValueError:
         raise HTTPException(418, 'The move you provided is not allowed')
 
-    return get_game_state(game_instance)
+    # Get the removed pieces
+    removed_pieces = game_instance.get_removed_pieces(old_game, game_instance.game, 1 - player)
+
+    # Get new kings
+    new_kings = game_instance.get_new_kings(old_game, game_instance.game, player, (move.origin, move.target))
+
+    return {
+        'removed_pieces': removed_pieces,
+        'new_kings': new_kings
+    }
 
 
 def get_game_state(opponent: Opponent) -> Dict[str, Any]:

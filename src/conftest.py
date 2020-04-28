@@ -7,10 +7,40 @@ from aiohttp import ClientTimeout, ClientSession
 from api.endpoints.models import CheckersPiece
 
 
+class TestData:
+    difficulty = 4
+
+    headers: dict = {
+        'X-authentication-token': '123456789'
+    }
+
+    invalid_move: dict = {
+        'origin': 1,
+        'target': 1
+    }
+
+    valid_move: dict = {
+        'origin': 9,
+        'target': 14
+    }
+
+    pieces: List[dict] = [
+        {
+            'position': 1,
+            'player': 1,
+            'king': True
+        }, {
+            'position': 2,
+            'player': 2,
+            'king': False
+        }
+    ]
+
+
 @pytest.fixture()
 async def session():
     timeout = ClientTimeout(total=(60 * 5))
-    session = ClientSession(timeout=timeout)
+    session = ClientSession(timeout=timeout, headers=TestData.headers)
 
     yield session
 
@@ -51,33 +81,3 @@ def valid_multi_move_pieces():
         _multi_move_list.append(CheckersPiece(**piece))
 
     return _multi_move_list
-
-
-class TestData:
-    difficulty = 4
-
-    headers: dict = {
-        'X-authentication-token': '123456789'
-    }
-
-    invalid_move: dict = {
-        'origin': 1,
-        'target': 1
-    }
-
-    valid_move: dict = {
-        'origin': 9,
-        'target': 14
-    }
-
-    pieces: List[dict] = [
-        {
-            'position': 1,
-            'player': 1,
-            'king': True
-        }, {
-            'position': 2,
-            'player': 2,
-            'king': False
-        }
-    ]

@@ -25,15 +25,14 @@ class TestApi:
     @pytest.mark.asyncio
     async def test_create_board(self, session):
         # new game
-        url = f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=true'
-        async with session.put(url, headers=TestData.headers) as resp:
+        async with session.put(f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=true') as resp:
             j = await resp.json()
             game_key = j['game_key']
             assert isinstance(j, dict)
             assert resp.status == 201
 
             # get board
-        async with session.get(f"{self.base_url}/game/{game_key}", headers=TestData.headers) as resp:
+        async with session.get(f"{self.base_url}/game/{game_key}") as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 200
@@ -41,14 +40,12 @@ class TestApi:
     @pytest.mark.asyncio
     async def test_invalid_move(self, session):
         # new game
-        url = f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=true'
-        async with session.put(url, headers=TestData.headers) as resp:
+        async with session.put(f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=true') as resp:
             j = await resp.json()
             game_key = j['game_key']
 
             # make a invalid move
-        async with session.post(f"{self.base_url}/game/{game_key}/move", headers=TestData.headers,
-                                json=TestData.invalid_move) as resp:
+        async with session.post(f"{self.base_url}/game/{game_key}/move", json=TestData.invalid_move) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 418
@@ -56,14 +53,12 @@ class TestApi:
     @pytest.mark.asyncio
     async def test_valid_move(self, session):
         # new game
-        url = f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=true'
-        async with session.put(url, headers=TestData.headers) as resp:
+        async with session.put(f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=true') as resp:
             j = await resp.json()
             game_key = j['game_key']
 
             # make a valid move
-        async with session.post(f"{self.base_url}/game/{game_key}/move", headers=TestData.headers,
-                                json=TestData.valid_move) as resp:
+        async with session.post(f"{self.base_url}/game/{game_key}/move", json=TestData.valid_move) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 200
@@ -71,13 +66,12 @@ class TestApi:
     @pytest.mark.asyncio
     async def test_delete_game(self, session):
         # new game
-        url = f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=true'
-        async with session.put(url, headers=TestData.headers) as resp:
+        async with session.put(f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=true') as resp:
             j = await resp.json()
             game_key = j['game_key']
 
             # delete game
-        async with session.delete(f"{self.base_url}/game/{game_key}", headers=TestData.headers) as resp:
+        async with session.delete(f"{self.base_url}/game/{game_key}") as resp:
             j = await resp.json()
             assert not j
             assert resp.status == 200
@@ -85,15 +79,22 @@ class TestApi:
     @pytest.mark.asyncio
     async def test_calc_next_move(self, session):
         # new game
-        url = f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=false'
-        async with session.put(url, headers=TestData.headers) as resp:
+        async with session.put(f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=false') as resp:
             j = await resp.json()
             game_key = j['game_key']
 
-            # calculate next move
-        async with session.get(f"{self.base_url}/game/{game_key}/move", headers=TestData.headers) as resp:
-            j = await resp.json()
+        # calculate next move
+        async with session.get(f"{self.base_url}/game/{game_key}/move") as resp:
+            move = await resp.json()
             assert isinstance(j, dict)
+            assert resp.status == 200
+
+        async with session.post(f"{self.base_url}/game/{game_key}/move", json=move['move']) as resp:
+            j = await resp.json()
+
+            assert j
+            assert not j['removed_pieces']
+            assert not j['new_kings']
             assert resp.status == 200
 
     @classmethod
