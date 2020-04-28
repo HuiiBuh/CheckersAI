@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from copy import deepcopy
-from typing import Optional, List, Dict, Tuple
+from typing import Optional, List, Dict, Tuple, Union
 
 from checkers.game import Game
 from checkers.piece import Piece
@@ -84,7 +84,7 @@ class Opponent(ABC):
         self.game.move([start_position, end_position])
 
     @staticmethod
-    def _get_active_pieces(game: Game) -> List[Piece]:
+    def get_active_pieces(game: Game) -> List[Piece]:
         """
         Get the active pieces of a game
         :param game: The Game
@@ -131,6 +131,100 @@ class Opponent(ABC):
 
         self.game.board.searcher.build(self.game.board)
 
+    def get_removed_pieces(self, game_1: Game, game_2: Game, player: int) -> List[int]:
+        """
+        Get the removed pieces of one player by comparing two games.
+        :param game_1: The first game (The original game)
+        :param game_2: The second game (The game after ONE move)
+        :param player: The player whose pieces have been removed. This CANNOT be the player who made the move
+        :return: The position of the pieces which should be removed
+        """
+
+        pieces_game_1 = self._get_active_pieces_of_one_player(game_1, player)
+
+        pieces_game_2 = self._get_active_pieces_of_one_player(game_2, player)
+        pieces_game_2_hash_map = self._position_piece_hash_map(pieces_game_2)
+
+        return self._calculate_remove_pieces(pieces_game_1, pieces_game_2_hash_map)
+
+    @staticmethod
+    def _calculate_remove_pieces(piece_list: List[Piece], piece_hash_map: Dict[int, Piece]) -> List[int]:
+        """
+        Get the removed pieces
+
+        :param piece_list: A list of checkers pieces of game 1
+        :param piece_hash_map: A hash map of checkers pieces of game 2 (key = position)
+        :return: A list of position where pieces have been removed
+        """
+
+        return_position_list: List[int] = []
+        for piece in piece_list:
+            if piece.position not in piece_hash_map:
+                return_position_list.append(piece.position)
+
+        return return_position_list
+
+    def get_new_kings(self, game_1: Game, game_2: Game, player: int, last_move: Tuple[int, int]) -> List[int]:
+        """
+        Get possibly created new kings
+
+        :param game_1: The first game (The original game)
+        :param game_2: The second game (The game after ONE move)
+        :param player: The player whose pieces should be scanned for new kings. This HAS TO be the player who made the
+            move
+        :param last_move: The last move (if it is a multi move)
+        :return: A list of positions which should be made a king
+        """
+
+        pieces_game_1 = self._get_active_pieces_of_one_player(game_1, player)
+        pieces_game_1_hash_map = self._position_piece_hash_map(pieces_game_1)
+
+        pieces_game_2 = self._get_active_pieces_of_one_player(game_2, player)
+
+        return self._calculate_new_kings(pieces_game_2, pieces_game_1_hash_map, last_move)
+
+    @staticmethod
+    def _calculate_new_kings(piece_list: List[Piece], piece_hash_map: Dict[int, Piece],
+                             last_move: Tuple[int, int]) -> List[int]:
+        """
+        Calculate new kings in the game
+
+        :param piece_list: A list of checkers pieces of game 1
+        :param piece_hash_map: A hash map of checkers pieces of game 2 (key = position)
+        :param last_move: The last move (if it is a multi move)
+        :return: A list of pieces which changed and became a king
+        """
+
+        return_list: List[int] = []
+
+        for piece in piece_list:
+            position = piece.position
+            if piece.position == last_move[1]:
+                position = last_move[0]
+
+            if position in piece_hash_map:
+                if piece.king is not piece_hash_map[position]:
+                    return_list.append(piece.position)
+
+        return return_list
+
+    @staticmethod
+    def _get_active_pieces_of_one_player(game: Game, player: int) -> List[Piece]:
+        """
+        Get the active pieces of one player
+
+        :param game: The game the pieces should be extracted from
+        :param player: The player whose pieces should be extracted
+        :return: A list of active pieces of one player
+        """
+
+        piece_list: List[Piece] = []
+        for piece in game.board.pieces:
+            if not piece.captured:
+                if piece.player == player:
+                    piece_list.append(piece)
+        return piece_list
+
     def get_move_by_pieces(self, transmitted_piece_list: List[CheckersPiece]) -> List[Tuple[int, int]]:
         """
         Get all the pieces on a board and reconstruct the moves which have been made.
@@ -145,7 +239,7 @@ class Opponent(ABC):
         """
 
         # Get a list of active pieces
-        active_pieces: List[Piece] = self._get_active_pieces(self.game)
+        active_pieces: List[Piece] = self.get_active_pieces(self.game)
 
         # Generate a Hash map of pieces with the position as key
         piece_hash_map: Dict[int, CheckersPiece] = self._position_piece_hash_map(transmitted_piece_list)
@@ -200,7 +294,8 @@ class Opponent(ABC):
         return False
 
     @staticmethod
-    def _position_piece_hash_map(pieces_list: List[CheckersPiece]) -> Dict[int, CheckersPiece]:
+    def _position_piece_hash_map(pieces_list: Union[List[CheckersPiece], List[Piece]]) \
+            -> Union[Dict[int, CheckersPiece], Dict[int, Piece]]:
         """
         Build a hash map out of the pieces
         :param pieces_list: The pieces the hash map will be generated with
@@ -255,7 +350,7 @@ class Opponent(ABC):
 
         for move_game in move_game_list:
             # Get the active pieces of the game
-            active_pieces = self._get_active_pieces(move_game[1])
+            active_pieces = self.get_active_pieces(move_game[1])
 
             # Check if anything is different (which should not be the case if the right moves where made)
             if not self._get_changed_positions(active_pieces, piece_hash_map):

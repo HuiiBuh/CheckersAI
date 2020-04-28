@@ -2,14 +2,19 @@ import json
 from typing import List
 
 import pytest
-from aiohttp import ClientTimeout
+from aiohttp import ClientTimeout, ClientSession
 
 from api.endpoints.models import CheckersPiece
 
 
 @pytest.fixture()
-def timeout():
-    return ClientTimeout(total=(60 * 9))
+async def session():
+    timeout = ClientTimeout(total=(60 * 5))
+    session = ClientSession(timeout=timeout)
+
+    yield session
+
+    await session.close()
 
 
 def load_file(filename: str):
