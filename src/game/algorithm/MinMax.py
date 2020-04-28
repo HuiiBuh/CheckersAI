@@ -131,18 +131,3 @@ class MinMax(Opponent):
                     human_score += MinMaxWeight.PIECE
 
         return computer_score - human_score
-
-    @staticmethod
-    def get_active_pieces(game: Game) -> list:
-        """
-        Get the active pieces of a game
-        :param game: The Game
-        :return: A list of still available pieces
-        """
-
-        piece_list: list = []
-        for piece in game.board.pieces:
-            if not piece.captured:
-                piece_list.append(piece)
-
-        return piece_list

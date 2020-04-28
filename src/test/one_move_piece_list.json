@@ -1,0 +1,122 @@
+[
+  {
+    "position": 1,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 2,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 3,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 4,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 5,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 6,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 7,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 8,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 10,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 11,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 12,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 14,
+    "player": 1,
+    "king": false
+  },
+  {
+    "position": 21,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 22,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 23,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 24,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 25,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 26,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 27,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 28,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 29,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 30,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 31,
+    "player": 2,
+    "king": false
+  },
+  {
+    "position": 32,
+    "player": 2,
+    "king": false
+  }
+]
