@@ -27,7 +27,7 @@ class Opponent(ABC, object):
         """
 
         self.player = player
-        self.game = Game()
+        self._game = Game()
 
     def __repr__(self) -> Game:
         """
@@ -35,7 +35,7 @@ class Opponent(ABC, object):
         :return: The currently playing game
         """
 
-        return self.game
+        return self._game
 
     def __history__(self) -> list:
         """
@@ -43,7 +43,11 @@ class Opponent(ABC, object):
         :return: List of moves that happened in the game
         """
 
-        return self.game.moves
+        return self._game.moves
+
+    @property
+    def game(self) -> Game:
+        return self._game
 
     def play_game(self) -> None:
         """
@@ -51,9 +55,9 @@ class Opponent(ABC, object):
         :return: None
         """
 
-        while not self.game.is_over():
+        while not self._game.is_over():
             sleep(0.1)
-            if self.game.whose_turn() != self.player:
+            if self._game.whose_turn() != self.player:
 
                 start_position: str = input("Start: ")
                 end_position: str = input("End: ")
@@ -71,7 +75,7 @@ class Opponent(ABC, object):
             else:
                 self.calculate_next_move()
 
-        winner = self.game.get_winner()
+        winner = self._game.get_winner()
         print(COLOUR.GREEN + f"The winner is player {winner}." + COLOUR.END)
 
     def move(self, start_position: int, end_position: int):
@@ -81,7 +85,7 @@ class Opponent(ABC, object):
         :param end_position: The end coordinates of the piece
         """
 
-        self.game.move([start_position, end_position])
+        self._game.move([start_position, end_position])
 
     @staticmethod
     def get_active_pieces(game: Game) -> List[Piece]:
@@ -115,11 +119,11 @@ class Opponent(ABC, object):
         if len(piece_list) > 24:
             raise ValueError('You cannot pass more than 16 pieces')
 
-        board_pieces: List[Piece] = self.game.board.pieces
+        board_pieces: List[Piece] = self._game.board.pieces
 
         for piece in board_pieces:
             piece.capture()
-            self.game.board.searcher.build(self.game.board)
+            self._game.board.searcher.build(self._game.board)
 
         piece_index = 0
         for new_piece in piece_list:
@@ -129,7 +133,7 @@ class Opponent(ABC, object):
             board_pieces[piece_index].captured = False
             piece_index += 1
 
-        self.game.board.searcher.build(self.game.board)
+        self._game.board.searcher.build(self._game.board)
 
     def get_removed_pieces(self, game_1: Game, game_2: Game, player: int) -> List[int]:
         """
@@ -239,14 +243,14 @@ class Opponent(ABC, object):
         """
 
         # Get a list of active pieces
-        active_pieces: List[Piece] = self.get_active_pieces(self.game)
+        active_pieces: List[Piece] = self.get_active_pieces(self._game)
 
         # Generate a Hash map of pieces with the position as key
         piece_hash_map: Dict[int, CheckersPiece] = self._position_piece_hash_map(transmitted_piece_list)
 
         # A list of positions which have changed
         changed_positions: List[int] = self._get_changed_position_for_player(active_pieces, piece_hash_map,
-                                                                             self.game.whose_turn())
+                                                                             self._game.whose_turn())
 
         # Try to reconstruct the game and return the move which made it possible
         moves: List[Tuple[int, int]] = self._reconstruct_game(changed_positions, piece_hash_map)
@@ -336,7 +340,7 @@ class Opponent(ABC, object):
             raise ValueError('Non of the players pieces has moved. This is not possible')
 
         changed_position: int = changed_position[0]
-        move_list: List[Tuple[int, int]] = self.game.get_possible_moves()
+        move_list: List[Tuple[int, int]] = self._game.get_possible_moves()
 
         # Extract only the moves with the changed position in it
         updated_move_list: List[Tuple[int, int]] = []
@@ -345,8 +349,8 @@ class Opponent(ABC, object):
                 updated_move_list.append(move)
 
         # Get the move and the resulting game
-        move_game_list: List[Tuple[List[Tuple[int, int]], Game]] = self._trace_move(self.game, updated_move_list,
-                                                                                    self.game.whose_turn())
+        move_game_list: List[Tuple[List[Tuple[int, int]], Game]] = self._trace_move(self._game, updated_move_list,
+                                                                                    self._game.whose_turn())
 
         for move_game in move_game_list:
             # Get the active pieces of the game

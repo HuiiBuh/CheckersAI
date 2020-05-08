@@ -4,12 +4,15 @@
     <list default="true" id="05f56248-9532-428a-86b5-3c8efacc5b85" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/CheckersAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CheckersAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/export_piece.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/export_piece.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/endpoints/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/endpoints/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/algorithm/MinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MinMax.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/algorithm/MinMaxMP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MinMaxMP.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/algorithm/MonteCarlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MonteCarlo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/algorithm/MonteCarloMP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MonteCarloMP.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/algorithm/Opponent.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/Opponent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/test_gameplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_gameplay.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test_move_recreation.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_move_recreation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +66,7 @@
       <recent name="$PROJECT_DIR$/src/difficulty/network" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_gameplay">
+  <component name="RunManager" selected="Python tests.pytest in test">
     <configuration name="manual_start" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CheckersAI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -295,14 +298,14 @@
     </configuration>
     <list>
       <item itemvalue="Python.manual_start" />
+      <item itemvalue="Python.test_gameplay" />
       <item itemvalue="Python tests.pytest for test.test_api.TestApi" />
       <item itemvalue="Python tests.pytest for testt.test_gameplay.test_min_max_game" />
-      <item itemvalue="Python tests.pytest for testt.test_gameplay.test_monte_carlo" />
-      <item itemvalue="Python tests.pytest for testt.test_gameplay.test_monte_carlo_min_max" />
       <item itemvalue="Python tests.pytest for testt.test_move_recreation" />
       <item itemvalue="Python tests.pytest in test" />
+      <item itemvalue="Python tests.pytest for testt.test_gameplay.test_monte_carlo" />
+      <item itemvalue="Python tests.pytest for testt.test_gameplay.test_monte_carlo_min_max" />
       <item itemvalue="Python tests.pytest in /home/niclas/IdeaProjects/CheckersAI/src/testt/test_gameplay.py" />
-      <item itemvalue="Python.test_gameplay" />
     </list>
     <recent_temporary>
       <list>
@@ -410,54 +413,54 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="672" y="120" width="572" height="812" key="#test_positions/0.0.1920.1040@0.0.1920.1040" timestamp="1586873636013" />
-    <state width="1699" height="466" key="DebuggerActiveHint" timestamp="1588938983830">
+    <state width="1699" height="466" key="DebuggerActiveHint" timestamp="1588941084460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1699" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1588938983830" />
+    <state width="1699" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1588941084460" />
     <state x="763" y="355" width="424" height="481" key="FileChooserDialogImpl" timestamp="1588073019016">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="763" y="355" width="424" height="481" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1588073019016" />
-    <state width="1878" height="343" key="GridCell.Tab.0.bottom" timestamp="1588939242686">
+    <state width="1878" height="616" key="GridCell.Tab.0.bottom" timestamp="1588941470418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="343" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588939242686" />
-    <state width="1878" height="343" key="GridCell.Tab.0.center" timestamp="1588939242685">
+    <state width="1878" height="616" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588941470418" />
+    <state width="1878" height="616" key="GridCell.Tab.0.center" timestamp="1588941470418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="343" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588939242685" />
-    <state width="1878" height="343" key="GridCell.Tab.0.left" timestamp="1588939242685">
+    <state width="1878" height="616" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588941470418" />
+    <state width="1878" height="616" key="GridCell.Tab.0.left" timestamp="1588941470418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="343" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588939242685" />
-    <state width="1878" height="343" key="GridCell.Tab.0.right" timestamp="1588939242686">
+    <state width="1878" height="616" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588941470418" />
+    <state width="1878" height="616" key="GridCell.Tab.0.right" timestamp="1588941470418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="343" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588939242686" />
-    <state width="1878" height="343" key="GridCell.Tab.1.bottom" timestamp="1588939236532">
+    <state width="1878" height="616" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588941470418" />
+    <state width="1878" height="2" key="GridCell.Tab.1.bottom" timestamp="1588941388224">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="343" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588939236532" />
-    <state width="1878" height="343" key="GridCell.Tab.1.center" timestamp="1588939236531">
+    <state width="1878" height="2" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588941388224" />
+    <state width="1878" height="2" key="GridCell.Tab.1.center" timestamp="1588941388224">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="343" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588939236531" />
-    <state width="1878" height="343" key="GridCell.Tab.1.left" timestamp="1588939236531">
+    <state width="1878" height="2" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588941388224" />
+    <state width="1878" height="2" key="GridCell.Tab.1.left" timestamp="1588941388224">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="343" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588939236531" />
-    <state width="1878" height="343" key="GridCell.Tab.1.right" timestamp="1588939236531">
+    <state width="1878" height="2" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588941388224" />
+    <state width="1878" height="2" key="GridCell.Tab.1.right" timestamp="1588941388224">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="343" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588939236531" />
+    <state width="1878" height="2" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588941388224" />
     <state x="598" y="225" width="720" height="602" key="NewModule_or_Project.wizard" timestamp="1586881181438">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="598" y="225" width="720" height="602" key="NewModule_or_Project.wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1586881181438" />
-    <state x="467" y="162" width="1024" height="842" key="SettingsEditor" timestamp="1588937032730">
+    <state x="467" y="162" width="1024" height="842" key="SettingsEditor" timestamp="1588941383675">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="467" y="162" width="1024" height="842" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1588937032730" />
+    <state x="467" y="162" width="1024" height="842" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1588941383675" />
     <state x="645" y="357" key="com.intellij.ide.util.TipDialog" timestamp="1588067074975">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -499,7 +502,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_move_recreation_test_move_recreation.coverage" NAME="pytest for test_move_recreation.test_move_recreation Coverage Results" MODIFIED="1587828108467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/Checkers$Unittests_for_Positions_TestPosition_test_position_to_coordinates.coverage" NAME="Unittests for Positions.TestPosition.test_position_to_coordinates Coverage Results" MODIFIED="1572540251467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
-    <SUITE FILE_PATH="coverage/CheckersAI$pytest_in_test.coverage" NAME="pytest in test Coverage Results" MODIFIED="1588936143068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CheckersAI$pytest_in_test.coverage" NAME="pytest in test Coverage Results" MODIFIED="1588941683082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_move_recreation_test_new_king.coverage" NAME="pytest for test_move_recreation.test_new_king Coverage Results" MODIFIED="1588056280984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_in_test_move_recreation_py.coverage" NAME="pytest in test_move_recreation.py Coverage Results" MODIFIED="1587828393106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test.coverage" NAME="pytest in test Coverage Results" MODIFIED="1587980686539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -511,7 +514,7 @@
     <SUITE FILE_PATH="coverage/CheckersAI$api.coverage" NAME="api Coverage Results" MODIFIED="1586877404460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/example" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_move_recreation_test_load_game.coverage" NAME="pytest for test_move_recreation.test_load_game Coverage Results" MODIFIED="1587987884192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$export_piece.coverage" NAME="export_piece Coverage Results" MODIFIED="1587810843175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/example" />
-    <SUITE FILE_PATH="coverage/CheckersAI$test_gameplay.coverage" NAME="test_gameplay Coverage Results" MODIFIED="1588939236463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
+    <SUITE FILE_PATH="coverage/CheckersAI$test_gameplay.coverage" NAME="test_gameplay Coverage Results" MODIFIED="1588941042351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/Checkers$Unittests_in_Positions_py.coverage" NAME="Unittests in Positions.py Coverage Results" MODIFIED="1572542178682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/Checkers$MonteCarlo.coverage" NAME="MonteCarlo Coverage Results" MODIFIED="1582827571616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/difficulty/algorithm" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_move_recreation_TestApi.coverage" NAME="pytest for test_move_recreation.TestApi Coverage Results" MODIFIED="1587979714389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />

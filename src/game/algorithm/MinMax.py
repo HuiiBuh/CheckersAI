@@ -35,7 +35,7 @@ class MinMax(Opponent):
         """
 
         # Check if it is the turn of the computer
-        if self.game.whose_turn() is not self.player or self.game.is_over():
+        if self._game.whose_turn() is not self.player or self._game.is_over():
             return None
 
         score_move_list: List[Tuple[float, Optional[int]]] = self._start_min_max()
@@ -57,7 +57,7 @@ class MinMax(Opponent):
     def _start_min_max(self) -> List[Tuple[float, Optional[int]]]:
         """Call the min max calculation"""
 
-        return [self._min_max(game=self.game, maximize_score=True)]
+        return [self._min_max(game=self._game, maximize_score=True)]
 
     def _min_max(self, game: Game,
                  maximize_score: bool,

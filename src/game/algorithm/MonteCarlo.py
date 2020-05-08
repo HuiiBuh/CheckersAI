@@ -37,16 +37,16 @@ class MonteCarlo(Opponent):
     def _start_monte_carlo(self) -> Optional[List[Dict[str, Any]]]:
 
         # Check if it is the turn of the computer
-        if self.game.whose_turn() is not self.player or self.game.is_over():
+        if self._game.whose_turn() is not self.player or self._game.is_over():
             return None
 
         # Get the possible moves
-        move_list: list = self.game.board.get_possible_moves()
+        move_list: list = self._game.board.get_possible_moves()
 
         # Get the best score
         move_score_list: List[Dict[str, Any]] = []
         for move in move_list:
-            move_score = self._tree_search(move, self.game, self.move_count)
+            move_score = self._tree_search(move, self._game, self.move_count)
             move_score_list.append(move_score)
 
         return move_score_list

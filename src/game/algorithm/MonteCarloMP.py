@@ -15,14 +15,14 @@ class MonteCarloMP(MonteCarlo):
     def _start_monte_carlo(self) -> Optional[List[Dict[str, Any]]]:
 
         # Check if it is the turn of the computer
-        if self.game.whose_turn() is not self.player or self.game.is_over():
+        if self._game.whose_turn() is not self.player or self._game.is_over():
             return
 
         # Get the cpu cores
         cpu_cores: int = multiprocessing.cpu_count()
 
         # Get the possible moves
-        move_list: list = self.game.board.get_possible_moves()
+        move_list: list = self._game.board.get_possible_moves()
         random.shuffle(move_list)
 
         # Create a list with spited moves
@@ -33,7 +33,7 @@ class MonteCarloMP(MonteCarlo):
         process_list: List[BaseProcess] = []
         for process_number in range(len(process_move_list)):
             # Args for the process
-            args: tuple = (process_move_list[process_number], self.game, self.move_count, communication_queue)
+            args: tuple = (process_move_list[process_number], self._game, self.move_count, communication_queue)
 
             # Create the new process
             process: BaseProcess = Process(target=self._tree_search, args=args,
