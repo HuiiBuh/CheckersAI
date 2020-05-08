@@ -17,6 +17,7 @@ class MinMaxWeight:
 
 
 class MinMax(Opponent):
+
     def __init__(self, player: int, branch_depth: int):
         """
         Create a new MinMax Opponent
@@ -24,7 +25,7 @@ class MinMax(Opponent):
         :param branch_depth: The depth of the min max calculation
         """
 
-        super().__init__(player)
+        super().__init__(player, branch_depth)
         self.branch_depth: int = branch_depth
 
     def calculate_next_move(self) -> Optional[dict]:
@@ -34,16 +35,29 @@ class MinMax(Opponent):
         """
 
         # Check if it is the turn of the computer
-        if self.game.whose_turn() is not self.player or self.game.is_over():
+        if self._game.whose_turn() is not self.player or self._game.is_over():
             return None
 
-        score, move = self._start_min_max()
-        return {'move': move, 'score': score}
+        score_move_list: List[Tuple[float, Optional[int]]] = self._start_min_max()
 
-    def _start_min_max(self) -> Tuple[float, Optional[int]]:
+        # Create the list with the best moves
+        best_score = -maxsize
+        best_move = None
+
+        # Go through every move in the list
+        for result in score_move_list:
+
+            # Get the score and check if the score is better than the score of the current best move
+            if result[0] >= best_score:
+                best_score = result[0]
+                best_move = result[1]
+
+        return {'move': best_move, 'score': best_score}
+
+    def _start_min_max(self) -> List[Tuple[float, Optional[int]]]:
         """Call the min max calculation"""
 
-        return self._min_max(game=self.game, maximize_score=True)
+        return [self._min_max(game=self._game, maximize_score=True)]
 
     def _min_max(self, game: Game,
                  maximize_score: bool,

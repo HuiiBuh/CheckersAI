@@ -10,7 +10,7 @@ def export_game():
     monte_carlo_game = MinMax(1, 5)
     monte_carlo_game.move(9, 14)
 
-    piece_list: List[Piece] = monte_carlo_game.game.board.pieces
+    piece_list: List[Piece] = monte_carlo_game._game.board.pieces
 
     dict_list = []
     for piece in piece_list:

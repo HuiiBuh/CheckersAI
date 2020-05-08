@@ -8,6 +8,7 @@ from fastapi import APIRouter, HTTPException, status, Response
 from api.endpoints.GameHolder import GameHolder
 from api.endpoints.models import Move, CheckersPiece
 from game import MinMaxMP
+from game.algorithm.MonteCarloMinMax import MonteCarloMinMax
 from game.algorithm.Opponent import Opponent
 
 router = APIRouter()
@@ -39,7 +40,7 @@ async def new_game(difficulty: int, player_first: bool = False):
     """
     player = 2 if player_first else 1
 
-    game_key = game_holder.add_game(MinMaxMP(player, difficulty))
+    game_key = game_holder.add_game(MonteCarloMinMax(player, difficulty))
 
     return {'game_key': game_key}
 
@@ -113,7 +114,7 @@ async def calculate_move(game_key: str):
             'origin': proposed_move['move'][0],
             'target': proposed_move['move'][1]
         },
-        'score': proposed_move['score']
+        'score': proposed_move['min_max_score'] + proposed_move['monte_carlo_score']
     }
 
 
@@ -160,9 +161,9 @@ def get_game_state(opponent: Opponent) -> Dict[str, Any]:
     for piece in piece_list:
         update_piece_list.append(CheckersPiece(position=piece.position, king=piece.king, player=piece.player))
 
-    player_turn: int = opponent.game.whose_turn()
-    winner: Optional[int] = opponent.game.get_winner()
-    is_over: bool = opponent.game.is_over()
+    player_turn: int = opponent._game.whose_turn()
+    winner: Optional[int] = opponent._game.get_winner()
+    is_over: bool = opponent._game.is_over()
 
     return {
         'board': update_piece_list,

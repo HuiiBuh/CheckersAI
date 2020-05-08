@@ -32,10 +32,10 @@ def test_load_game():
 
     min_max.load_game([piece_1, piece_2])
 
-    moves = min_max.game.get_possible_moves()[0]
+    moves = min_max._game.get_possible_moves()[0]
     min_max.move(*moves)
 
-    assert min_max.game.is_over()
+    assert min_max._game.is_over()
 
 
 def test_multi_move_recreation(valid_multi_move_pieces):
@@ -62,13 +62,13 @@ def test_piece_removal(valid_multi_move_pieces):
 
     min_max.load_game([piece_1, piece_2, piece_3, piece_4])
 
-    old_game: Game = deepcopy(min_max.game)
+    old_game: Game = deepcopy(min_max._game)
     move_list = min_max.get_move_by_pieces(valid_multi_move_pieces)
 
     for move in move_list:
         min_max.move(*move)
 
-    removed_pieces = min_max.get_removed_pieces(old_game, min_max.game, min_max.game.whose_turn())
+    removed_pieces = min_max.get_removed_pieces(old_game, min_max._game, min_max._game.whose_turn())
     assert removed_pieces == [25, 18, 11]
 
 
@@ -82,8 +82,8 @@ def test_new_king():
 
     min_max.move(8, 11)
 
-    old_game: Game = deepcopy(min_max.game)
+    old_game: Game = deepcopy(min_max._game)
     min_max.move(6, 1)
 
-    king_pieces = min_max.get_new_kings(old_game, min_max.game, old_game.whose_turn(), (6, 1))
+    king_pieces = min_max.get_new_kings(old_game, min_max._game, old_game.whose_turn(), (6, 1))
     assert king_pieces == [1]
