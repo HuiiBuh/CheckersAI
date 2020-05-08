@@ -19,8 +19,8 @@ class CheckersPiece(ABC):
     king: bool
 
 
-class Opponent(ABC):
-    def __init__(self, player: int):
+class Opponent(ABC, object):
+    def __init__(self, player: int, *_):
         """
         Generate a new Random game
         :param player: The player of the RandomGame (1 or 2)

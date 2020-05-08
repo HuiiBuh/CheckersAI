@@ -2,7 +2,7 @@ import multiprocessing
 from multiprocessing import Queue
 from multiprocessing.context import Process
 from multiprocessing.process import BaseProcess
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 from checkers.game import Game
 from sys import maxsize
@@ -14,13 +14,13 @@ class MinMaxWeight:
     WIN = maxsize
     LOSE = -maxsize
     POSITION = 1
-    PIECE = 6
+    PIECE = 66
     KING = 10
 
 
 class MinMaxMP(MinMax):
 
-    def _start_min_max(self) -> Tuple[int, int]:
+    def _start_min_max(self) -> List[Tuple[float, Optional[int]]]:
 
         cpu_cores: int = multiprocessing.cpu_count()
 
@@ -51,23 +51,12 @@ class MinMaxMP(MinMax):
         while not communication_queue.empty():
             result_list.append(communication_queue.get())
 
-        # Create the list with the best moves
-        best_score = -maxsize
-        best_move = None
-
-        # Go through every move in the list
-        for result in result_list:
-
-            # Get the score and check if the score is better than the score of the current best move
-            if result[0] >= best_score:
-                best_score = result[0]
-                best_move = result[1]
-
         # Close the queue
         communication_queue.close()
         communication_queue.join_thread()
 
-        return best_score, best_move
+        return result_list
+
 
     def _min_max(self, game: Game, move_list: List[Tuple[int, int]], queue: Queue = None, **kwargs) -> None:
         """
