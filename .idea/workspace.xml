@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f56248-9532-428a-86b5-3c8efacc5b85" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/CheckersAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CheckersAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/export_piece.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/export_piece.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/endpoints/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/endpoints/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/algorithm/MinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MinMax.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/algorithm/MinMaxMP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MinMaxMP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/algorithm/MonteCarlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MonteCarlo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/algorithm/MonteCarloMP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MonteCarloMP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkers.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHECKERS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/algorithm/Opponent.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/Opponent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/test_gameplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_gameplay.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/test_move_recreation.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_move_recreation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,11 +54,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docker" />
       <recent name="$PROJECT_DIR$/src/test" />
       <recent name="$PROJECT_DIR$/src/game" />
       <recent name="$PROJECT_DIR$/example" />
       <recent name="$PROJECT_DIR$/src/difficulty" />
-      <recent name="$PROJECT_DIR$/src/difficulty/network" />
     </key>
   </component>
   <component name="RunManager" selected="Python tests.pytest in test">
@@ -381,10 +376,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587976471699" />
-    <state x="691" y="333" width="574" height="385" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587969875914">
+    <state x="691" y="333" width="574" height="385" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589720654282">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="691" y="333" width="574" height="385" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1587969875914" />
+    <state x="691" y="333" width="574" height="385" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1589720654282" />
     <state x="695" y="314" width="525" height="423" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1587976410107">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -473,10 +468,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="507" y="260" width="902" height="532" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1588938194655" />
-    <state x="635" y="261" width="1024" height="682" key="find.popup" timestamp="1588937368413">
+    <state x="635" y="261" width="1024" height="682" key="find.popup" timestamp="1589720528579">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="635" y="261" width="1024" height="682" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1588937368413" />
+    <state x="635" y="261" width="1024" height="682" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589720528579" />
     <state x="707" y="174" width="501" height="704" key="refactoring.ChangeSignatureDialog" timestamp="1586885103614">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -502,7 +497,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_move_recreation_test_move_recreation.coverage" NAME="pytest for test_move_recreation.test_move_recreation Coverage Results" MODIFIED="1587828108467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/Checkers$Unittests_for_Positions_TestPosition_test_position_to_coordinates.coverage" NAME="Unittests for Positions.TestPosition.test_position_to_coordinates Coverage Results" MODIFIED="1572540251467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
-    <SUITE FILE_PATH="coverage/CheckersAI$pytest_in_test.coverage" NAME="pytest in test Coverage Results" MODIFIED="1588941683082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CheckersAI$pytest_in_test.coverage" NAME="pytest in test Coverage Results" MODIFIED="1588941852004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_move_recreation_test_new_king.coverage" NAME="pytest for test_move_recreation.test_new_king Coverage Results" MODIFIED="1588056280984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_in_test_move_recreation_py.coverage" NAME="pytest in test_move_recreation.py Coverage Results" MODIFIED="1587828393106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test.coverage" NAME="pytest in test Coverage Results" MODIFIED="1587980686539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -520,7 +515,8 @@
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_move_recreation_TestApi.coverage" NAME="pytest for test_move_recreation.TestApi Coverage Results" MODIFIED="1587979714389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$__manual_start.coverage" NAME="__manual_start Coverage Results" MODIFIED="1586877401719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_api_TestApi_test_create_board.coverage" NAME="pytest for test_api.TestApi.test_create_board Coverage Results" MODIFIED="1588061225580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
-    <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_api_TestApi_test_calc_next_move.coverage" NAME="pytest for test_api.TestApi.test_calc_next_move Coverage Results" MODIFIED="1588063426639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
+    <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_api_TestApi_test_calc_next_move.coverage" NAME="pytest for test_api.TestApi.test_calc_next_move Coverage Results" MODIFIED="1588941821627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
+    <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_move_recreation_test_pascal.coverage" NAME="pytest for test_move_recreation.test_pascal Coverage Results" MODIFIED="1589714578123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$game.coverage" NAME="game Coverage Results" MODIFIED="1588058263906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api/endpoints" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_move_recreation_test_piece_removal.coverage" NAME="pytest for test_move_recreation.test_piece_removal Coverage Results" MODIFIED="1588054868280" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_gameplay_test_monte_carlo.coverage" NAME="pytest for test_gameplay.test_monte_carlo Coverage Results" MODIFIED="1588934969894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />

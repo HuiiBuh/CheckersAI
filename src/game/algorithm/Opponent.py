@@ -382,7 +382,7 @@ class Opponent(ABC, object):
 
             # Check if the move of the player has ended
             if game.whose_turn() != player:
-                return_list = [([move], game)]
+                return_list.append(([move], game))
             else:
                 # Recursively trace the game to the end
                 traced_move_game_list = self._trace_move(game, game.get_possible_moves(), player)

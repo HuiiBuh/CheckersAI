@@ -87,3 +87,29 @@ def test_new_king():
 
     king_pieces = min_max.get_new_kings(old_game, min_max._game, old_game.whose_turn(), (6, 1))
     assert king_pieces == [1]
+
+
+def test_pascal():
+    min_max = MinMax(1, 2)
+    min_max.move(12, 16)
+
+    # 24 - 19
+    move_list = [{'position': 1, 'player': 1, 'king': False}, {'position': 2, 'player': 1, 'king': False},
+                 {'position': 3, 'player': 1, 'king': False}, {'position': 4, 'player': 1, 'king': False},
+                 {'position': 5, 'player': 1, 'king': False}, {'position': 6, 'player': 1, 'king': False},
+                 {'position': 7, 'player': 1, 'king': False}, {'position': 8, 'player': 1, 'king': False},
+                 {'position': 9, 'player': 1, 'king': False}, {'position': 10, 'player': 1, 'king': False},
+                 {'position': 11, 'player': 1, 'king': False}, {'position': 16, 'player': 1, 'king': False},
+                 {'position': 19, 'player': 2, 'king': False}, {'position': 21, 'player': 2, 'king': False},
+                 {'position': 22, 'player': 2, 'king': False}, {'position': 23, 'player': 2, 'king': False},
+                 {'position': 25, 'player': 2, 'king': False}, {'position': 26, 'player': 2, 'king': False},
+                 {'position': 27, 'player': 2, 'king': False}, {'position': 28, 'player': 2, 'king': False},
+                 {'position': 29, 'player': 2, 'king': False}, {'position': 30, 'player': 2, 'king': False},
+                 {'position': 31, 'player': 2, 'king': False}, {'position': 32, 'player': 2, 'king': False}]
+
+    t = []
+    for move in move_list:
+        t.append(CheckersPiece(**move))
+
+    moves = min_max.get_move_by_pieces(t)
+    assert moves == [[24, 19]]
