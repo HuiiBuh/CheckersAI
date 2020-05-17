@@ -229,7 +229,7 @@ class Opponent(ABC, object):
                     piece_list.append(piece)
         return piece_list
 
-    def get_move_by_pieces(self, transmitted_piece_list: List[CheckersPiece]) -> List[Tuple[int, int]]:
+    def get_move_by_pieces(self, transmitted_piece_list: object) -> object:
         """
         Get all the pieces on a board and reconstruct the moves which have been made.
         :param transmitted_piece_list: A list of pieces
@@ -357,6 +357,7 @@ class Opponent(ABC, object):
             active_pieces = self.get_active_pieces(move_game[1])
 
             # Check if anything is different (which should not be the case if the right moves where made)
+            a = self._get_changed_positions(active_pieces, piece_hash_map)
             if not self._get_changed_positions(active_pieces, piece_hash_map):
                 return move_game[0]
 
@@ -382,7 +383,7 @@ class Opponent(ABC, object):
 
             # Check if the move of the player has ended
             if game.whose_turn() != player:
-                return_list = [([move], game)]
+                return_list.append(([move], game))
             else:
                 # Recursively trace the game to the end
                 traced_move_game_list = self._trace_move(game, game.get_possible_moves(), player)
