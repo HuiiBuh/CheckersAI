@@ -39,7 +39,7 @@ class TestData:
 
 @pytest.fixture()
 async def session():
-    timeout = ClientTimeout(total=(60 * 5))
+    timeout = ClientTimeout(total=(10))
     session = ClientSession(timeout=timeout, headers=TestData.headers)
 
     yield session

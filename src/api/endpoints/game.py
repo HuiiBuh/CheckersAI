@@ -17,13 +17,16 @@ game_holder = GameHolder()
 
 @router.get('/ping')
 async def ping_pong(response: Response):
+    """Returns a X-Send-Time header with the send time of the server in it"""
     response.headers["X-Send-Time"] = str(time.time())
     return {}
 
 
 @router.put("/game/load", status_code=status.HTTP_201_CREATED)
-async def load_game(piece_list: List[CheckersPiece], difficulty: int, player_first: bool = False):
+async def load_game(piece_list: List[CheckersPiece], difficulty: int,
+                    player_first: bool = False, ):
     """ Load the game """
+
     player = 2 if player_first else 1
     game_key = game_holder.add_game(MinMaxMP(player, difficulty))
     game_holder[game_key].load_game(piece_list)
@@ -43,6 +46,17 @@ async def new_game(difficulty: int, player_first: bool = False):
     game_key = game_holder.add_game(MonteCarloMinMax(player, difficulty))
 
     return {'game_key': game_key}
+
+
+@router.delete("/game", status_code=status.HTTP_201_CREATED)
+async def new_game(difficulty: int, player_first: bool = False):
+    """
+    Create a new game
+    :param difficulty: The difficulty of the game
+    :param player_first: Does the player want to be first
+    """
+
+    game_holder.game_instances = {}
 
 
 @router.get("/game/{game_key}")
@@ -107,7 +121,7 @@ async def calculate_move(game_key: str):
     proposed_move = game_instance.calculate_next_move()
 
     if not proposed_move:
-        raise HTTPException(400, 'It is not the turn of the computer or the game is over')
+        raise HTTPException(400, 'The game is over')
 
     return {
         'move': {
@@ -148,7 +162,8 @@ async def make_move(game_key: str, move: Move):
 
     return {
         'removed_pieces': removed_pieces,
-        'new_kings': new_kings
+        'new_kings': new_kings,
+        'game_state': get_game_state(game_instance)
     }
 
 
@@ -161,9 +176,9 @@ def get_game_state(opponent: Opponent) -> Dict[str, Any]:
     for piece in piece_list:
         update_piece_list.append(CheckersPiece(position=piece.position, king=piece.king, player=piece.player))
 
-    player_turn: int = opponent._game.whose_turn()
-    winner: Optional[int] = opponent._game.get_winner()
-    is_over: bool = opponent._game.is_over()
+    player_turn: int = opponent.game.whose_turn()
+    winner: Optional[int] = opponent.game.get_winner()
+    is_over: bool = opponent.game.is_over()
 
     return {
         'board': update_piece_list,

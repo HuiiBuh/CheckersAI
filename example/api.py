@@ -37,50 +37,50 @@ async def make_requests():
 
     async with ClientSession(timeout=timeout) as session:
         # new game
-        async with session.put(f'http://0.0.0.0:8000/game?difficulty={difficulty}&player_first=true',
+        async with session.put(f'http://0.0.0.0:1234/game?difficulty={difficulty}&player_first=true',
                                headers=headers) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
-            assert resp.status == 200
+            assert resp.status == 201
 
         # get board
-        async with session.get("http://0.0.0.0:8000/game", headers=headers) as resp:
+        async with session.get("http://0.0.0.0:1234/game", headers=headers) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 200
 
         # make a invalid move
-        async with session.post("http://0.0.0.0:8000/game/move", headers=headers, json=invalid_move) as resp:
+        async with session.post("http://0.0.0.0:1234/game/move", headers=headers, json=invalid_move) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 418
 
         # make a valid move
-        async with session.post("http://0.0.0.0:8000/game/move", headers=headers, json=valid_move) as resp:
+        async with session.post("http://0.0.0.0:1234/game/move", headers=headers, json=valid_move) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 200
 
         # delete game
-        async with session.delete("http://0.0.0.0:8000/game", headers=headers) as resp:
+        async with session.delete("http://0.0.0.0:1234/game", headers=headers) as resp:
             j = await resp.json()
             assert not j
             assert resp.status == 200
 
         # new game
-        async with session.put(f'http://0.0.0.0:8000/game?difficulty={difficulty}', headers=headers) as resp:
+        async with session.put(f'http://0.0.0.0:1234/game?difficulty={difficulty}', headers=headers) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 200
 
         # send pieces list
-        async with session.post("http://0.0.0.0:8000/game/pieces", headers=headers, json=pieces) as resp:
+        async with session.post("http://0.0.0.0:1234/game/pieces", headers=headers, json=pieces) as resp:
             j = await resp.json()
             assert isinstance(j, List)
             assert resp.status == 200
 
         # calculate next move
-        async with session.get("http://0.0.0.0:8000/game/move", headers=headers) as resp:
+        async with session.get("http://0.0.0.0:1234/game/move", headers=headers) as resp:
             j = await resp.json()
             assert isinstance(j, dict)
             assert resp.status == 200

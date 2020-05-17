@@ -37,11 +37,14 @@ class GameHolder:
         self.game_instances[game_key] = game
         return game_key
 
-    def __getitem__(self, key) -> Optional[Opponent]:
+    def __getitem__(self, key: str) -> Optional[Opponent]:
         if key not in self.game_instances:
             return None
 
         return self.game_instances[key]
+
+    def __contains__(self, key: str):
+        return key in self.game_instances
 
     def __delitem__(self, key):
         del self.game_instances[key]
