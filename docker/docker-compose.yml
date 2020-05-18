@@ -7,5 +7,5 @@ services:
     network_mode: host
     ports:
       - 1234:1234
-    build: ..
+    build: .
 

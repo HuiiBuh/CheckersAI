@@ -1,11 +1,11 @@
 FROM python:3.8.2-slim-buster
 
 # Create workdir
-COPY ../src /src/
+COPY ./src /src/
 WORKDIR /src
 
 # Copy and install the requirements.txt
-COPY ../requirements.txt .
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 # Run the server
