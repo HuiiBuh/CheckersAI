@@ -32,13 +32,13 @@ class MonteCarloMinMax(MinMaxMP, MonteCarloMP):
                 best_min_max_carlo_moves = [{
                     "min_max_score": result[0],
                     "move": result[1],
-                    "monte_carlo_score": -maxsize
+                    "monte_carlo_score": 0
                 }]
             elif result[0] == best_score:
                 best_min_max_carlo_moves.append({
                     "min_max_score": result[0],
                     "move": result[1],
-                    "monte_carlo_score": -maxsize
+                    "monte_carlo_score": 0
                 })
 
         for carlo_move in monte_carlo_move_list:

@@ -14,10 +14,6 @@ class MonteCarloMP(MonteCarlo):
 
     def _start_monte_carlo(self) -> Optional[List[Dict[str, Any]]]:
 
-        # Check if it is the turn of the computer
-        if self._game.whose_turn() is not self.player or self._game.is_over():
-            return
-
         # Get the cpu cores
         cpu_cores: int = multiprocessing.cpu_count()
 

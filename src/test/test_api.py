@@ -97,6 +97,25 @@ class TestApi:
             assert not j['new_kings']
             assert resp.status == 200
 
+    @pytest.mark.asyncio
+    async def test_hole_game(self, session):
+        # new game
+        async with session.put(f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=false') as resp:
+            j = await resp.json()
+            game_key = j['game_key']
+
+        is_over = False
+        while not is_over:
+            # calculate next move
+            async with session.get(f"{self.base_url}/game/{game_key}/move") as resp:
+                assert resp.status == 200
+                move = await resp.json()
+
+            async with session.post(f"{self.base_url}/game/{game_key}/move", json=move['move']) as resp:
+                assert resp.status == 200
+                j = await resp.json()
+                is_over = j['game_state']['is_over']
+
     @classmethod
     def teardown_class(cls):
         cls.api_instance.terminate()

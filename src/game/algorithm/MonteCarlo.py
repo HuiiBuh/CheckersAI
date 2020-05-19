@@ -36,10 +36,6 @@ class MonteCarlo(Opponent):
 
     def _start_monte_carlo(self) -> Optional[List[Dict[str, Any]]]:
 
-        # Check if it is the turn of the computer
-        if self._game.whose_turn() is not self.player or self._game.is_over():
-            return None
-
         # Get the possible moves
         move_list: list = self._game.board.get_possible_moves()
 

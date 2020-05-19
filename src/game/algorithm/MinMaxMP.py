@@ -20,7 +20,7 @@ class MinMaxWeight:
 
 class MinMaxMP(MinMax):
 
-    def _start_min_max(self) -> List[Tuple[float, Optional[int]]]:
+    def _start_min_max(self) -> List[List[Tuple[float, Optional[int]]]]:
 
         cpu_cores: int = multiprocessing.cpu_count()
 

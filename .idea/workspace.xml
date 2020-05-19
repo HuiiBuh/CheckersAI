@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f56248-9532-428a-86b5-3c8efacc5b85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CheckersAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CheckersAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/example/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/algorithm/MinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MinMax.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/algorithm/MinMaxMP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MinMaxMP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/algorithm/MonteCarlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MonteCarlo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/algorithm/MonteCarloMP.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MonteCarloMP.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/algorithm/MonteCarloMinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/algorithm/MonteCarloMinMax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +61,7 @@
       <recent name="$PROJECT_DIR$/src/difficulty" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.api">
+  <component name="RunManager" selected="Python tests.pytest for test_api.TestApi.test_hole_game">
     <configuration name="api" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CheckersAI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,7 +106,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_api.TestApi.test_full_game" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_api.TestApi.test_hole_game" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="CheckersAI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -121,7 +119,7 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_api.TestApi.test_full_game&quot;" />
+      <option name="_new_target" value="&quot;test_api.TestApi.test_hole_game&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -300,17 +298,17 @@
       <item itemvalue="Python tests.pytest for testt.test_gameplay.test_min_max_game" />
       <item itemvalue="Python tests.pytest for testt.test_move_recreation" />
       <item itemvalue="Python tests.pytest in test" />
-      <item itemvalue="Python tests.pytest for test_api.TestApi.test_full_game" />
       <item itemvalue="Python tests.pytest for test_gameplay.test_mp_min_max" />
       <item itemvalue="Python tests.pytest for test_gameplay.test_min_max_game" />
+      <item itemvalue="Python tests.pytest for test_api.TestApi.test_hole_game" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.api" />
+        <item itemvalue="Python tests.pytest for test_api.TestApi.test_hole_game" />
         <item itemvalue="Python.manual_start" />
+        <item itemvalue="Python.api" />
         <item itemvalue="Python tests.pytest for test_gameplay.test_min_max_game" />
         <item itemvalue="Python tests.pytest for test_gameplay.test_mp_min_max" />
-        <item itemvalue="Python tests.pytest for test_api.TestApi.test_full_game" />
       </list>
     </recent_temporary>
   </component>
@@ -422,22 +420,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="763" y="355" width="424" height="481" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589885546570" />
-    <state width="1878" height="408" key="GridCell.Tab.0.bottom" timestamp="1589885410337">
+    <state width="1878" height="597" key="GridCell.Tab.0.bottom" timestamp="1589885929743">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="408" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589885410337" />
-    <state width="1878" height="408" key="GridCell.Tab.0.center" timestamp="1589885410335">
+    <state width="1878" height="597" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589885929743" />
+    <state width="1878" height="597" key="GridCell.Tab.0.center" timestamp="1589885929743">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="408" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589885410335" />
-    <state width="1878" height="408" key="GridCell.Tab.0.left" timestamp="1589885410334">
+    <state width="1878" height="597" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589885929743" />
+    <state width="1878" height="597" key="GridCell.Tab.0.left" timestamp="1589885929742">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="408" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589885410334" />
-    <state width="1878" height="408" key="GridCell.Tab.0.right" timestamp="1589885410336">
+    <state width="1878" height="597" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589885929742" />
+    <state width="1878" height="597" key="GridCell.Tab.0.right" timestamp="1589885929743">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="408" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589885410336" />
+    <state width="1878" height="597" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589885929743" />
     <state width="1878" height="408" key="GridCell.Tab.1.bottom" timestamp="1589885410339">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -482,10 +480,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="174" width="501" height="704" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586885103614" />
-    <state x="624" y="167" width="672" height="676" key="search.everywhere.popup" timestamp="1589885402972">
+    <state x="624" y="167" width="672" height="676" key="search.everywhere.popup" timestamp="1589885739018">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="167" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589885402972" />
+    <state x="624" y="167" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589885739018" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -512,6 +510,7 @@
     <SUITE FILE_PATH="coverage/CheckersAI$__manual_start.coverage" NAME="__manual_start Coverage Results" MODIFIED="1586877401719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api" />
     <SUITE FILE_PATH="coverage/CheckersAI$test_positions.coverage" NAME="test_positions Coverage Results" MODIFIED="1586886369580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_in_src.coverage" NAME="pytest in src Coverage Results" MODIFIED="1586851450572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_api_TestApi_test_hole_game.coverage" NAME="pytest for test_api.TestApi.test_hole_game Coverage Results" MODIFIED="1589886208831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/CheckersAI$entry_point.coverage" NAME="entry_point Coverage Results" MODIFIED="1586857368487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api" />
     <SUITE FILE_PATH="coverage/CheckersAI$MonteCarlo.coverage" NAME="MonteCarlo Coverage Results" MODIFIED="1582831635712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/difficulty/algorithm" />
     <SUITE FILE_PATH="coverage/CheckersAI$_manual_start.coverage" NAME="_manual_start Coverage Results" MODIFIED="1586858699309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api" />
@@ -520,7 +519,7 @@
     <SUITE FILE_PATH="coverage/CheckersAI$api.coverage" NAME="api Coverage Results" MODIFIED="1589885357923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/example" />
     <SUITE FILE_PATH="coverage/Checkers$Game.coverage" NAME="Game Coverage Results" MODIFIED="1582821633942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/difficulty/network" />
     <SUITE FILE_PATH="coverage/Checkers$NeuronalNetwork.coverage" NAME="NeuronalNetwork Coverage Results" MODIFIED="1582823826445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/difficulty" />
-    <SUITE FILE_PATH="coverage/CheckersAI$manual_start.coverage" NAME="manual_start Coverage Results" MODIFIED="1589885063387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api" />
+    <SUITE FILE_PATH="coverage/CheckersAI$manual_start.coverage" NAME="manual_start Coverage Results" MODIFIED="1589885918546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/api" />
     <SUITE FILE_PATH="coverage/CheckersAI$pytest_for_test_gameplay_test_min_max_game.coverage" NAME="pytest for test_gameplay.test_min_max_game Coverage Results" MODIFIED="1589885015352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/Checkers$Unittests_in_Positions_py.coverage" NAME="Unittests in Positions.py Coverage Results" MODIFIED="1572542178682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test" />
     <SUITE FILE_PATH="coverage/Checkers$main.coverage" NAME="main Coverage Results" MODIFIED="1582824556942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
