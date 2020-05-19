@@ -155,7 +155,7 @@ async def make_move(game_key: str, move: Move):
     # Copy the game
     old_game = deepcopy(game_instance.game)
     player = game_instance.game.whose_turn()
-    player = 2 if player == 1 else 1
+    other_player = 2 if player == 1 else 1
 
     try:
         game_instance.move(move.origin, move.target)
@@ -163,7 +163,7 @@ async def make_move(game_key: str, move: Move):
         raise HTTPException(418, 'The move you provided is not allowed')
 
     # Get the removed pieces
-    removed_pieces = game_instance.get_removed_pieces(old_game, game_instance.game, player)
+    removed_pieces = game_instance.get_removed_pieces(old_game, game_instance.game, other_player)
 
     # Get new kings
     new_kings = game_instance.get_new_kings(old_game, game_instance.game, player, (move.origin, move.target))
