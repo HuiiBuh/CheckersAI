@@ -12,7 +12,7 @@ class MonteCarloMinMax(MinMaxMP, MonteCarloMP):
         super().__init__(player, difficulty)
 
     def calculate_next_move(self) -> Optional[Dict[str, Any]]:
-        min_max_move_list: List[Tuple[float, Optional[int]]] = self._start_min_max()
+        min_max_move_list: List[List[Tuple[float, Optional[int]]]] = self._start_min_max()
         monte_carlo_move_list: Optional[List[Dict[str, Any]]] = self._start_monte_carlo()
 
         if not min_max_move_list and not monte_carlo_move_list:
@@ -25,6 +25,7 @@ class MonteCarloMinMax(MinMaxMP, MonteCarloMP):
 
         best_min_max_carlo_moves: List[Dict[str, Any]] = []
         for result in min_max_move_list:
+            result = result[0]
             if result[0] > best_score:
                 best_score = result[0]
 

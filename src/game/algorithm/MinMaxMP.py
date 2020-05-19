@@ -67,7 +67,7 @@ class MinMaxMP(MinMax):
 
         move_score_list = []
         for move in move_list:
-            move_score, move = MinMax._min_max(self, game, True, [move])
-            move_score_list.append([move_score, move])
+            score, move = MinMax._min_max(self, game, True, [move])
+            move_score_list.append([score, move])
 
-        queue.put(*move_score_list)
+        queue.put(move_score_list)

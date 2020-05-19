@@ -1,6 +1,6 @@
 import copy
 import random
-from typing import Tuple, List, Optional
+from typing import Tuple, List, Optional, Union
 
 from checkers.game import Game
 from sys import maxsize
@@ -38,7 +38,7 @@ class MinMax(Opponent):
         if self._game.whose_turn() is not self.player or self._game.is_over():
             return None
 
-        score_move_list: List[Tuple[float, Optional[int]]] = self._start_min_max()
+        score_move_list = self._start_min_max()
 
         # Create the list with the best moves
         best_score = -maxsize
@@ -47,6 +47,9 @@ class MinMax(Opponent):
         # Go through every move in the list
         for result in score_move_list:
 
+            if isinstance(result[0], list):
+                result = result[0]
+
             # Get the score and check if the score is better than the score of the current best move
             if result[0] >= best_score:
                 best_score = result[0]
@@ -54,7 +57,7 @@ class MinMax(Opponent):
 
         return {'move': best_move, 'score': best_score}
 
-    def _start_min_max(self) -> List[Tuple[float, Optional[int]]]:
+    def _start_min_max(self) -> Union[List[Tuple[float, Optional[int]]], List[List[Tuple[float, Optional[int]]]]]:
         """Call the min max calculation"""
 
         return [self._min_max(game=self._game, maximize_score=True)]
