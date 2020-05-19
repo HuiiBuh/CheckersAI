@@ -57,6 +57,15 @@ async def new_game():
     game_holder.game_instances = {}
 
 
+@router.get("/game/all")
+async def get_all_games():
+    """
+    Get all games which have been created
+    """
+
+    return list(game_holder.game_instances.keys())
+
+
 @router.get("/game/{game_key}")
 async def get_board(game_key: str):
     """Get the current game board"""
