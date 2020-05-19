@@ -100,7 +100,7 @@ class TestApi:
     @pytest.mark.asyncio
     async def test_hole_game(self, session):
         # new game
-        async with session.put(f'{self.base_url}/game?difficulty={TestData.difficulty}&player_first=false') as resp:
+        async with session.put(f'{self.base_url}/game?difficulty=1&player_first=false') as resp:
             j = await resp.json()
             game_key = j['game_key']
 
@@ -115,6 +115,8 @@ class TestApi:
                 assert resp.status == 200
                 j = await resp.json()
                 is_over = j['game_state']['is_over']
+
+                print(j['removed_pieces'])
 
     @classmethod
     def teardown_class(cls):

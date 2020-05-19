@@ -11,7 +11,7 @@ class TestData:
     difficulty = 4
 
     headers: dict = {
-        'X-authentication-token': '123456789'
+        'X-authentication-token': 'a_random_token_please'
     }
 
     invalid_move: dict = {
@@ -39,7 +39,7 @@ class TestData:
 
 @pytest.fixture()
 async def session():
-    timeout = ClientTimeout(total=(10))
+    timeout = ClientTimeout(total=(9 * 60))
     session = ClientSession(timeout=timeout, headers=TestData.headers)
 
     yield session

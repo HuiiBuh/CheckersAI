@@ -49,11 +49,9 @@ async def new_game(difficulty: int, player_first: bool = False):
 
 
 @router.delete("/game", status_code=status.HTTP_201_CREATED)
-async def new_game(difficulty: int, player_first: bool = False):
+async def new_game():
     """
     Create a new game
-    :param difficulty: The difficulty of the game
-    :param player_first: Does the player want to be first
     """
 
     game_holder.game_instances = {}
@@ -142,20 +140,21 @@ async def make_move(game_key: str, move: Move):
 
     game_instance = game_holder[game_key]
 
-    # Copy the game
-    old_game = deepcopy(game_instance.game)
-    player = game_instance.game.whose_turn()
-
     if not game_instance:
         raise HTTPException(404, 'Your game key is invalid.')
 
+    # Copy the game
+    old_game = deepcopy(game_instance.game)
+    player = game_instance.game.whose_turn()
+    player = 2 if player == 1 else 1
+
     try:
-        game_instance.game.move([move.origin, move.target])
+        game_instance.move(move.origin, move.target)
     except ValueError:
         raise HTTPException(418, 'The move you provided is not allowed')
 
     # Get the removed pieces
-    removed_pieces = game_instance.get_removed_pieces(old_game, game_instance.game, 1 - player)
+    removed_pieces = game_instance.get_removed_pieces(old_game, game_instance.game, player)
 
     # Get new kings
     new_kings = game_instance.get_new_kings(old_game, game_instance.game, player, (move.origin, move.target))

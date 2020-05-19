@@ -4,7 +4,7 @@ from typing import List
 from aiohttp import ClientSession, ClientTimeout
 
 headers: dict = {
-    'X-authentication-token': '123456789'
+    'X-authentication-token': 'a_random_token_please'
 }
 invalid_move: dict = {
     'origin': 1,
