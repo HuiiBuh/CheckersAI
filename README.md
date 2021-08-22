@@ -1,7 +1,8 @@
 # CheckersAI
 
-Algorithm which
- plays Checkers.
+Algorithm which plays Checkers.
 
-## Board
-![checkers board](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Draughts_Notation.svg/1024px-Draughts_Notation.svg.png)
+Related Projects:
++ [Checkers Master](https://github.com/HuiiBuh/checkers-master)
++ [Mindstorm Robot](https://github.com/Constri/Mindstorm)
++ [Board Game Detection](https://github.com/callFEELD/BoardGame-Detection)
