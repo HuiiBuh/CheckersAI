@@ -1,5 +1,5 @@
 # Checkers game engine
 imparaai-checkers==1.4.2
-fastapi==0.54.2
+fastapi==0.65.2
 uvicorn==0.11.7
 
